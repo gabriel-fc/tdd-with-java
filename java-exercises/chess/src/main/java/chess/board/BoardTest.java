@@ -1,5 +1,6 @@
-package chess;
+package chess.board;
 
+import chess.board.Board;
 import chess.pieces.BoardInterface;
 import chess.pieces.Piece;
 import org.junit.Before;

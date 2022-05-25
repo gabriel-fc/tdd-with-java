@@ -1,6 +1,7 @@
-package chess;
+package chess.board;
 
 import chess.pieces.Piece;
+import chess.pieces.types.Type;
 import util.StringUtil;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class Board {
     char[] files = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     public void setEmptyRank(int rank){
         for (char file: files) {
-            placePiece(Piece.noPiece(), StringUtil.setInput(file, rank));
+            placePiece(Piece.noPiece(), StringUtil.setPosition(file, rank));
         }
     }
     public void setEmptyBoard(){
@@ -57,7 +58,7 @@ public class Board {
             }
         }
 
-        //rank 7: black pieces
+        //rank 7: black pawns
         board.add(new HashMap<>());
         board.get(6).put('a', Piece.createBlackPawn());
         board.get(6).put('b', Piece.createBlackPawn());
@@ -68,7 +69,7 @@ public class Board {
         board.get(6).put('g', Piece.createBlackPawn());
         board.get(6).put('h', Piece.createBlackPawn());
 
-        //Rank 8: Black pawns
+        //Rank 8: Black pieces
         board.add(new HashMap<>());
         board.get(7).put('a', Piece.createBlackRook());
         board.get(7).put('b', Piece.createBlackKnight());
@@ -85,6 +86,7 @@ public class Board {
     public int pieceCount() {
         return Piece.getCounter();
     }
+
     public Piece getPiece(String position){
         int rank = StringUtil.getRankFromInput(position);
         char file = StringUtil.getFileFromInput(position);
@@ -141,5 +143,10 @@ public class Board {
         board.get(rank).put(file, piece);
 
     }
+
+    public boolean isPositionEmpty(String position){
+        return getPiece(position).getType() == Type.NO_PIECE;
+    }
+
 }
 

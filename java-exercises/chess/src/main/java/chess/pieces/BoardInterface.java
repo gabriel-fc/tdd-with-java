@@ -1,6 +1,6 @@
 package chess.pieces;
 
-import chess.Board;
+import chess.board.Board;
 
 import static util.StringUtil.NEWLINE;
 

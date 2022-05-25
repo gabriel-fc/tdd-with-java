@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3d8ff677-d4b9-4b88-b6ea-4f97e33f2048" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../java-exercises/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/src/main/java/chess/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/src/main/java/chess/BoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/src/main/java/chess/CharacterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/src/main/java/chess/CharacterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/src/main/java/chess/pieces/BoardInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/src/main/java/chess/pieces/BoardInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/src/main/java/chess/pieces/PieceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/src/main/java/chess/pieces/PieceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/AllTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/AllTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/BoardTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/BoardTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/CharacterTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/CharacterTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/BoardInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/BoardInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/Piece$Color.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/Piece$Color.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/Piece.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/Piece.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/PieceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/PieceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/types/EvaluationStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/types/EvaluationStrategy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/types/PawnEvaluationStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/types/PawnEvaluationStrategy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/types/RegularEvaluationStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/types/RegularEvaluationStrategy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/types/Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/chess/pieces/types/Type.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-exercises/chess/target/classes/util/StringUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java-exercises/chess/target/classes/util/StringUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/courseinfo/CourseSession.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/courseinfo/CourseSessionTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/courseinfo/DateUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/courseinfo/DateUtilTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/courseinfo/Session.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/courseinfo/SessionTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/courseinfo/summer/SummerCourseSession.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/courseinfo/summer/TestSummerCourseSession.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/report/CourseReport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/report/CourseReportTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/report/ReportCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/report/ReportCardTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/report/ReportConstant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/report/RosterReporter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/report/RosterReporterTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/report/TestComparable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/studentinfo/BasicGradingStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/studentinfo/GradingStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/studentinfo/HonorsGradingStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/studentinfo/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/studentinfo/TestBasicGradingStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-lessons/unit-testing/src/main/java/sis/studentinfo/TestHonorsGradingStrategy.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="29eriJLXoT0v90QWxOziNJBUYzf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/sefaz/Documentos/docs gabriel/agile-book/java-exercises/chess",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+      <recent name="$PROJECT_DIR$/src/test/java" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="util" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="AllTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="chess" />
+      <option name="MAIN_CLASS_NAME" value="chess.AllTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AllTests" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3d8ff677-d4b9-4b88-b6ea-4f97e33f2048" name="Changes" comment="" />
+      <created>1653484519657</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653484519657</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

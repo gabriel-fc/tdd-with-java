@@ -2,9 +2,6 @@ package chess.pieces;
 
 import chess.Board;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import static util.StringUtil.NEWLINE;
 
 public class BoardInterface {

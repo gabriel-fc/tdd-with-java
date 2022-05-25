@@ -1,8 +1,9 @@
 package chess.pieces;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 import chess.pieces.types.Type;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 public class PieceTest {
 

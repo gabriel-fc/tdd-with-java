@@ -1,6 +1,9 @@
 package chess.pieces.types;
 
 import chess.pieces.Piece;
+import chess.pieces.types.evaluationstrategy.EvaluationStrategy;
+import chess.pieces.types.evaluationstrategy.PawnEvaluationStrategy;
+import chess.pieces.types.evaluationstrategy.RegularEvaluationStrategy;
 import util.StringUtil;
 
 
@@ -31,43 +34,7 @@ public enum Type {
         return evaluationStrategy.getStrength(isAloneInFile);
     }
 
-    public String moveForward(String currentPosition){
-        int rank = StringUtil.getRankFromInput(currentPosition);
-        char file = StringUtil.getFileFromInput(currentPosition);
-        return StringUtil.setPosition(file, ++rank);
-    }
 
-    public String moveBackward(String currentPosition){
-        int rank = StringUtil.getRankFromInput(currentPosition);
-        char file = StringUtil.getFileFromInput(currentPosition);
-        return StringUtil.setPosition(file, --rank);
-    }
 
-    public String moveRight(String currentPosition){
-        int rank = StringUtil.getRankFromInput(currentPosition);
-        char file = StringUtil.getFileFromInput(currentPosition);
-        return StringUtil.setPosition((char) (file + 1), rank);
-    }
 
-    public String moveLeft(String currentPosition){
-        int rank = StringUtil.getRankFromInput(currentPosition);
-        char file = StringUtil.getFileFromInput(currentPosition);
-        return StringUtil.setPosition((char) (file - 1), rank);
-    }
-
-    public String moveLeftForward(String currentPosition){
-        return moveForward(moveLeft(currentPosition));
-    }
-
-    public String moveRightForward(String currentPosition){
-        return moveForward(moveRight(currentPosition));
-    }
-
-    public String moveLeftBackward(String currentPosition){
-        return moveBackward(moveLeft(currentPosition));
-    }
-
-    public String moveRightBackward(String currentPosition){
-        return moveBackward(moveRight(currentPosition));
-    }
 }

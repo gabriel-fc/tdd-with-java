@@ -7,14 +7,15 @@ import util.StringUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import util.StringUtil;
+
 public class Board {
 
     private ArrayList<HashMap<Character, Piece>> board;
 
 
-    char[] files = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     public void setEmptyRank(int rank){
-        for (char file: files) {
+        for (char file: StringUtil.FILES) {
             placePiece(Piece.noPiece(), StringUtil.setPosition(file, rank));
         }
     }
@@ -53,7 +54,7 @@ public class Board {
         //fill the next 4 ranks with blank space
         for (int i = 2; i < 6; i++) {
             board.add(new HashMap<>());
-            for (char key: files) {
+            for (char key: StringUtil.FILES) {
                 board.get(i).put(key, Piece.noPiece());
             }
         }
@@ -128,7 +129,7 @@ public class Board {
 
     public double getStrength(Piece.Color color){
         double strength = 0;
-        for (char file: files) {
+        for (char file: StringUtil.FILES) {
             double value = getStrengthByFile(color, file);
             strength += value;
 

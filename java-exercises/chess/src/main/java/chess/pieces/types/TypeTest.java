@@ -18,18 +18,6 @@ public class TypeTest {
 
     }
 
-    @Test
-    public void kingMovementTest(){
-        assertEquals("a2", Type.KING.moveForward("a1"));
-        assertEquals("a1", Type.KING.moveBackward("a2"));
-        assertEquals("b2", Type.KING.moveRight("a2"));
-        assertEquals("a2", Type.KING.moveLeft("b2"));
 
-        assertEquals("a1", Type.KING.moveLeftBackward("b2"));
-        assertEquals("b1", Type.KING.moveRightBackward("a2"));
-        assertEquals("a2", Type.KING.moveLeftForward("b1"));
-        assertEquals("b2", Type.KING.moveRightForward("a1"));
-
-    }
 
 }

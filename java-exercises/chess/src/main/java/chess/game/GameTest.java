@@ -13,28 +13,30 @@ public class GameTest {
 
     @Test
     public void testIsValidMovement(){
-        Board board = new Board();
-        board.initialize();
+        Game game = new Game();
+        game.start();
+        Piece blackKing = Piece.createBlackKing();
+        Piece whiteKing = Piece.createWhiteKing();
 
         //move to empty place
-        assertTrue(Game.isValidMovement("d3", Piece.Color.WHITE, board));
+        assertTrue(game.isValidMovement("d3", whiteKing.getColor()));
         //move white to black
-        assertTrue(Game.isValidMovement("g3", Piece.Color.WHITE, board));
+        assertTrue(game.isValidMovement("g3", whiteKing.getColor()));
         //move black to white
-        assertTrue(Game.isValidMovement("a3", Piece.Color.BLACK, board));
+        assertTrue(game.isValidMovement("a3", blackKing.getColor()));
 
         //move to invalid file
-        assertFalse(Game.isValidMovement("`3", Piece.Color.WHITE, board));
-        assertFalse(Game.isValidMovement("i3", Piece.Color.WHITE, board));
+        assertFalse(game.isValidMovement("`3", whiteKing.getColor()));
+        assertFalse(game.isValidMovement("i3", whiteKing.getColor()));
 
         //move to invalid rank
-        assertFalse(Game.isValidMovement("a0", Piece.Color.WHITE, board));
-        assertFalse(Game.isValidMovement("a9", Piece.Color.WHITE, board));
+        assertFalse(game.isValidMovement("a0", whiteKing.getColor()));
+        assertFalse(game.isValidMovement("a9", whiteKing.getColor()));
 
         //move white to white
-        assertFalse(Game.isValidMovement("a1", Piece.Color.WHITE, board));
+        assertFalse(game.isValidMovement("a1", whiteKing.getColor()));
         //move black to black
-        assertFalse(Game.isValidMovement("a7", Piece.Color.BLACK, board));
+        assertFalse(game.isValidMovement("a7", blackKing.getColor()));
 
 
 

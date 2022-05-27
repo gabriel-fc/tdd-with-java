@@ -1,4 +1,4 @@
-package chess.pieces.types;
+package chess.pieces.types.evaluationstrategy;
 
 import org.junit.Test;
 

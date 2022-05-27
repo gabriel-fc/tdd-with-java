@@ -1,6 +1,8 @@
 package chess.pieces;
 import chess.pieces.types.Type;
 
+import java.util.ArrayList;
+
 public class Piece {
 
     private static int counter = 0;
@@ -100,4 +102,13 @@ public class Piece {
     public static Piece noPiece(){
         return new Piece(Type.NO_PIECE);
     }
+
+    public ArrayList<String> getPossibleMoves(){
+        ArrayList<String> possibleMoves = new ArrayList();
+
+        return possibleMoves;
+
+
+    }
+
 }

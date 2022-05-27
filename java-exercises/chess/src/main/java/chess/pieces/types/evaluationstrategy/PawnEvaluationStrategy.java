@@ -1,10 +1,12 @@
-package chess.pieces.types;
+package chess.pieces.types.evaluationstrategy;
 
-public class PawnEvaluationStrategy implements EvaluationStrategy{
+import chess.pieces.types.evaluationstrategy.EvaluationStrategy;
+
+public class PawnEvaluationStrategy implements EvaluationStrategy {
     private double strengthAlone;
     private double strengthInCompany;
 
-    PawnEvaluationStrategy(double strengthAlone, double strengthInCompany){
+    public PawnEvaluationStrategy(double strengthAlone, double strengthInCompany){
         this.strengthAlone = strengthAlone;
         this.strengthInCompany = strengthInCompany;
     }

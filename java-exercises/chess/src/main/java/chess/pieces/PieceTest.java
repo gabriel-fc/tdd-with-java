@@ -1,6 +1,6 @@
 package chess.pieces;
 
-import chess.pieces.types.Type;
+import chess.pieces.types.*;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -11,34 +11,35 @@ public class PieceTest {
     public void testCreate() {
         verifyCreation(
                 Piece.createWhitePawn(), Piece.createBlackPawn(),
-                Type.PAWN, Type.PAWN.getRepresentation(Piece.Color.WHITE));
+                Pawn.class, Piece.createWhitePawn().getRepresentation());
         verifyCreation(
                 Piece.createWhiteRook(), Piece.createBlackRook(),
-                Type.ROOK, Type.ROOK.getRepresentation(Piece.Color.WHITE));
+                Rook.class, Piece.createWhiteRook().getRepresentation());
         verifyCreation(
                 Piece.createWhiteKnight(), Piece.createBlackKnight(),
-                Type.KNIGHT, Type.KNIGHT.getRepresentation(Piece.Color.WHITE));
+                Knight.class, Piece.createWhiteKnight().getRepresentation());
         verifyCreation(
                 Piece.createWhiteBishop(), Piece.createBlackBishop(),
-                Type.BISHOP, Type.BISHOP.getRepresentation(Piece.Color.WHITE));
+                Bishop.class, Piece.createWhiteBishop().getRepresentation());
         verifyCreation(Piece.createWhiteQueen(), Piece.createBlackQueen(),
-                Type.QUEEN, Type.QUEEN.getRepresentation(Piece.Color.WHITE));
+                Queen.class, Piece.createWhiteQueen().getRepresentation());
         verifyCreation(Piece.createWhiteKing(), Piece.createBlackKing(),
-                Type.KING, Type.KING.getRepresentation(Piece.Color.WHITE));
+                King.class, Piece.createWhiteKing().getRepresentation());
         Piece blank = Piece.noPiece();
         assertEquals('.'
                 , blank.getRepresentation());
-        assertEquals(Type.NO_PIECE, blank.getType());
+        assertEquals(NoPiece.class, blank.getClass());
     }
     private void verifyCreation(Piece whitePiece, Piece blackPiece,
-                                Type type, char representation) {
+                                Class type, char representation) {
         assertTrue(whitePiece.isWhite());
-        assertEquals(type, whitePiece.getType());
+        assertEquals(type, whitePiece.getClass());
         assertEquals(representation, whitePiece.getRepresentation());
         assertTrue(blackPiece.isBlack());
-        assertEquals(type, blackPiece.getType());
+        assertEquals(type, blackPiece.getClass());
         assertEquals(Character.toUpperCase(representation),
                 blackPiece.getRepresentation());
+
     }
 }
 

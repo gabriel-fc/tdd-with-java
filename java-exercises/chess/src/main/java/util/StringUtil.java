@@ -13,16 +13,16 @@ public class StringUtil {
         return newString + NEWLINE;
     }
 
-    public static char getFileFromInput(String io){
-        return io.charAt(0);
+    public static int getFileFromInput(String io){
+        return io.charAt(0) - 97;
     }
 
     public static int getRankFromInput(String io){
-        return Character.getNumericValue(io.charAt(1)) - 1;
+        return 8 - Character.getNumericValue(io.charAt(1));
     }
 
-    public static String setPosition(char file, int rank){
-        return file + Integer.toString(rank+1);
+    public static String setPosition(int file, int rank){
+        return (char)(97+file) + Integer.toString(8 - rank);
     }
 
     private StringUtil(){}

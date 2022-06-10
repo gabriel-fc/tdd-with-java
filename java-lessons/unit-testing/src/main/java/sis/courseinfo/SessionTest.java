@@ -4,14 +4,16 @@ import org.junit.Before;
 import org.junit.Test;
 import sis.studentinfo.Student;
 
+import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static sis.courseinfo.DateUtil.createDate;
 
 
-abstract public class SessionTest {
+abstract public class   SessionTest {
     private Session session;
     private Date startDate;
     public static final int CREDITS = 3;
@@ -25,6 +27,7 @@ abstract public class SessionTest {
                 , startDate);
         session.setNumberOfCredits(CREDITS);
     }
+
     abstract protected Session createSession(String department, String number, Date startDate);
 
     @Test
@@ -64,5 +67,60 @@ abstract public class SessionTest {
         Session sessionD = createSession("CMSC", "210", date);
         assertTrue(sessionC.compareTo(sessionD) < 0);
         assertTrue(sessionD.compareTo(sessionC) > 0);
+    }
+
+
+    @Test
+    public void testAverageGpaForPartTimeStudents() {
+        session.enroll(createFullTimeStudent());
+        Student partTimer1 = new Student("1");
+        partTimer1.addGrade(Student.Grade.A);
+        session.enroll(partTimer1);
+        session.enroll(createFullTimeStudent());
+        Student partTimer2 = new Student("2");
+        partTimer2.addGrade(Student.Grade.B);
+        session.enroll(partTimer2);
+        assertEquals(3.5, session.averageGpaForPartTimeStudents(), 0.05);
+    }
+
+    private Student createFullTimeStudent() {
+        Student student = new Student("a");
+        student.addCredits(Student.CREDITS_REQUIRED_FOR_FULL_TIME);
+        return student;
+    }
+
+    @Test
+    public void testIterate() {
+        enrollStudents(session);
+        List<Student> results = new ArrayList<Student>();
+        for (Student student : session)
+            results.add(student);
+        assertEquals(session.getAllStudents(), results);
+    }
+
+    private void enrollStudents(Session session) {
+        session.enroll(new Student("1"));
+        session.enroll(new Student("2"));
+        session.enroll(new Student("3"));
+    }
+
+    @Test
+    public void testSessionUrl() throws SessionException {
+        final String url = "http://course.langrsoft.com/cmsc300";
+        session.setUrl(url);
+        assertEquals(url, session.getUrl().toString());
+    }
+
+    @Test
+    public void testInvalidSessionUrl() throws SessionException{
+        final String url = "httsp://course.langrsoft.com/cmsc300";
+        try {
+            session.setUrl(url);
+            fail("expected exception due to invalid protocol in URL");
+        } catch (SessionException expectedException) {
+            Throwable cause = expectedException.getCause();
+            expectedException.getMessage();
+            assertEquals(MalformedURLException.class, cause.getClass());
+        }
     }
 }

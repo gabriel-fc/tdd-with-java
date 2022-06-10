@@ -1,6 +1,7 @@
 import org.junit.Test;
 import sis.studentinfo.HonorsGradingStrategy;
 import sis.studentinfo.Student;
+import sis.studentinfo.StudentNameFormatException;
 
 import java.lang.management.GarbageCollectorMXBean;
 
@@ -59,6 +60,19 @@ public class StudentTest{
         Student student = new Student("a");
         student.setGradingStrategy(new HonorsGradingStrategy());
         return student;
+    }
+
+    @Test
+    public void testBadlyFormattedName() {
+        try {
+            new Student("a b c d");
+            fail("expected exception from 4-part name");
+        }
+        catch (StudentNameFormatException expectedException) {
+            assertEquals(
+                    "Student name 'a b c d' contains more than 3 parts",
+                    expectedException.getMessage());
+        }
     }
 
 }

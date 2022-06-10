@@ -1,42 +1,29 @@
 package chess.pieces;
-import chess.pieces.types.Type;
+import chess.pieces.types.*;
+import chess.pieces.types.movementstrategy.Movements;
+import util.StringUtil;
 
 import java.util.ArrayList;
 
-public class Piece {
+public class Piece{
 
-    private static int counter = 0;
     private final Color color;
-    private final Type type;
-    public enum Color {BLACK, WHITE}
+    private final char representation;
+    private int rank;
+    private int file;
+    public enum Color {BLACK, WHITE, NONE}
+    protected final Movements movements = new Movements();
 
-    private Piece(Type type, Color Color){
-        Piece.counter++;
-        this.type = type;
+    protected Piece(Color Color, char representation){
         this.color = Color;
-    }
-
-    private Piece(Type type){
-        this.type = type;
-        this.color = null;
-    }
-
-    public static void resetCounter(){
-        Piece.counter = 0;
-    }
-
-    public static int getCounter() {
-        return Piece.counter;
-    }
-
-    public Type getType() {
-        return type;
+        this.representation = representation;
     }
 
     public double getStrength(boolean isAloneInFile){
-        return type.getStrength(isAloneInFile);
-    }
 
+        //return getStrength(isAloneInFile);
+        return 0;
+    }
 
     public boolean isBlack(){return color == Color.BLACK;}
     public boolean isWhite(){return color == Color.WHITE;}
@@ -48,67 +35,76 @@ public class Piece {
 
 
     public char getRepresentation(){
-        return type.getRepresentation(color);
+        return color == Color.BLACK ? Character.toUpperCase(representation) : representation;
     }
 
     public static Piece createWhitePawn(){
-        return new Piece(Type.PAWN, Color.WHITE);
+        return new Pawn(Color.WHITE);
     }
-
     public static Piece createBlackPawn(){
-        return new Piece(Type.PAWN, Color.BLACK);
+        return new Pawn(Color.BLACK);
     }
 
     public static Piece createWhiteQueen(){
-        return new Piece(Type.QUEEN, Color.WHITE);
+        return new Queen(Color.WHITE);
     }
 
     public static Piece createBlackQueen(){
-        return new Piece(Type.QUEEN, Color.BLACK);
+        return new Queen(Color.BLACK);
     }
 
     public static Piece createWhiteBishop(){
-        return new Piece(Type.BISHOP, Color.WHITE);
+        return new Bishop(Color.WHITE);
     }
 
     public static Piece createBlackBishop(){
-        return new Piece(Type.BISHOP, Color.BLACK);
+        return new Bishop(Color.BLACK);
     }
 
     public static Piece createWhiteRook(){
-        return new Piece(Type.ROOK, Color.WHITE);
+        return new Rook(Color.WHITE);
     }
 
     public static Piece createBlackRook(){
-        return new Piece(Type.ROOK, Color.BLACK);
+        return new Rook(Color.BLACK);
     }
 
     public static Piece createWhiteKing(){
-        return new Piece(Type.KING, Color.WHITE);
+        return new King(Color.WHITE);
     }
 
     public static Piece createBlackKing(){
-        return new Piece(Type.KING, Color.BLACK);
+        return new King(Color.BLACK);
     }
 
     public static Piece createWhiteKnight(){
-        return new Piece(Type.KNIGHT, Color.WHITE);
+        return new Knight(Color.WHITE);
     }
 
     public static Piece createBlackKnight(){
-        return new Piece(Type.KNIGHT, Color.BLACK);
+        return new Knight(Color.BLACK);
     }
 
     public static Piece noPiece(){
-        return new Piece(Type.NO_PIECE);
+        return new NoPiece();
     }
 
-    public ArrayList<String> getPossibleMoves(){
-        ArrayList<String> possibleMoves = new ArrayList();
+    public ArrayList<String> getPossibleMoves(String position){
+        return new ArrayList<>();
+    }
 
-        return possibleMoves;
+    public void setPosition(int rank, int file){
+        this.rank = rank;
+        this.file = file;
+    }
 
+    public void setPosition(String position){
+        this.rank = StringUtil.getRankFromInput(position);
+        this.file = StringUtil.getFileFromInput(position);
+    }
 
+    public boolean isOpponent(Piece piece){
+        return piece.getColor() != this.color;
     }
 
 }

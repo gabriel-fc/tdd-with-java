@@ -2,8 +2,7 @@ package sis.studentinfo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.StringTokenizer;
+import java.util.logging.Logger;
 
 public class Student {
     public enum Grade {
@@ -37,9 +36,14 @@ public class Student {
     private ArrayList<Grade> grades;
     private double gpa;
     private String state;
+
+    final static Logger logger =
+            Logger.getLogger(Student.class.getName());
+
     public Student(String fullName) {
         this.name = fullName;
         credits = 0;
+        this.grades = new ArrayList<>();
         List<String> nameParts = split(fullName);
         final int maximumNumberOfNameParts = 3;
         if (nameParts.size() > maximumNumberOfNameParts) {
@@ -47,6 +51,9 @@ public class Student {
                     "Student name '" + fullName +
                             "' contains more than " + maximumNumberOfNameParts +
                             " parts";
+
+
+            Student.logger.info(message);
             throw new StudentNameFormatException(message);
         }
         setName(nameParts);
@@ -139,14 +146,17 @@ public class Student {
     }
 
     public double getGpa() {
+        Student.logger.fine("begin getGpa " + System.currentTimeMillis());
         if (grades.isEmpty())
             return 0.0;
         double total = 0.0;
-        for (Grade grade: grades) {
-           total += gradingStrategy.getGradePointsFor(grade);
-        }
-        return total / grades.size();
+        for (Grade grade: grades)
+            total += gradingStrategy.getGradePointsFor(grade);
+        double result = total / grades.size();
+        Student.logger.fine("end getGpa " + System.currentTimeMillis());
+        return result;
     }
+
 
     public void addGrade(Grade grade){
         grades.add(grade);

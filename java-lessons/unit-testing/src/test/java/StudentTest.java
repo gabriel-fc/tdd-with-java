@@ -3,8 +3,6 @@ import sis.studentinfo.HonorsGradingStrategy;
 import sis.studentinfo.Student;
 import sis.studentinfo.StudentNameFormatException;
 
-import java.lang.management.GarbageCollectorMXBean;
-
 import static org.junit.Assert.*;
 
 public class StudentTest{

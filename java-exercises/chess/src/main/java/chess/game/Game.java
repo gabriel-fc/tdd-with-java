@@ -19,4 +19,6 @@ public class Game {
         return Board.isValidPosition(position) &&
                 (board.isPositionEmpty(position) || piece.isOpponent(board.getPiece(position)));
     }
+
+
 }

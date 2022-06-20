@@ -10,6 +10,7 @@ import java.util.logging.LogRecord;
 public class LogFormatter extends Formatter {
     private CustomHandler countingLogHandler;
     public LogFormatter(CustomHandler countingLogHandler){
+        super();
         this.countingLogHandler = countingLogHandler;
     }
     public LogFormatter(){}
@@ -17,8 +18,7 @@ public class LogFormatter extends Formatter {
 
     @Override
     public String format(LogRecord record) {
-        String msg = record.getLevel().toString() + ": " + record.getMessage();
-
+        String msg =  record.getMessage();
         if (countingLogHandler == null){
             msg += StringUtil.NEWLINE;
             return msg.toString();

@@ -12,11 +12,16 @@ class CustomHandler extends Handler {
     public void publish(LogRecord record) {
         this.record = record;
         count.replace(record.getLevel(), count.get(record.getLevel()) + 1);
-        String msg = "\nNumber of logs for each level:\n";
-        for (Map.Entry<Level, Integer> pair: count.entrySet()) {
-            msg += pair.getKey() + ": " + pair.getValue() + "\n";
+
+        if(getFormatter() == null){
+            String msg = "\nNumber of logs for each level:\n";
+            for (Map.Entry<Level, Integer> pair : count.entrySet()) {
+                msg += pair.getKey() + ": " + pair.getValue() + "\n";
+            }
         }
-        record.setMessage(msg);
+        else {
+            record.setMessage(getFormatter().format(record));
+        }
     }
 
     public CustomHandler(){

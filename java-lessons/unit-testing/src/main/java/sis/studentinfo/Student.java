@@ -25,11 +25,13 @@ public class Student {
     private GradingStrategy gradingStrategy = new BasicGradingStrategy();
 
 
-    private final String name;
+    private String name="";
     private String firstName = "";
     private String middleName = "";
-    private String lastName;
+    private String lastName ="";
     private int credits;
+
+    private String id;
 
     private boolean isHonors = false;
 
@@ -165,4 +167,12 @@ public class Student {
         this.gradingStrategy = gradingStrategy;
     }
 
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
 }

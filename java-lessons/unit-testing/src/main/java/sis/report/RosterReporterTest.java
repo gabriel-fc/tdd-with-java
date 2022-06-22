@@ -3,6 +3,8 @@ package sis.report;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+
+import sis.courseinfo.Course;
 import sis.courseinfo.CourseSession;
 import sis.courseinfo.DateUtil;
 import sis.studentinfo.Student;
@@ -14,8 +16,9 @@ public class RosterReporterTest {
 
     @Before
     public void setUp(){
-        this.session = CourseSession.create("ENGL", "101", new DateUtil().
-                createDate(2003, 1, 6));
+        this.session = CourseSession.create(new Course("ENGL", "101"),
+                new DateUtil().createDate(2003, 1, 6));
+
     }
 
     @Test

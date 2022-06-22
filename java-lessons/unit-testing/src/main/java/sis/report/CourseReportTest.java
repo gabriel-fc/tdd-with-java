@@ -3,6 +3,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import java.util.*;
 
+import sis.courseinfo.Course;
 import sis.courseinfo.CourseSession;
 
 import static java.util.Collections.sort;
@@ -15,18 +16,17 @@ public class CourseReportTest {
     public void testReport() {
         final Date date = new Date();
         CourseReport report = new CourseReport();
-        report.add(CourseSession.create("ENGL", "101", date));
-        report.add(CourseSession.create("CZEC", "200", date));
-        report.add(CourseSession.create("ITAL", "410", date));
+        report.add(CourseSession.create(new Course("ENGL", "101"), date));
+        report.add(CourseSession.create(new Course("CZEC", "200"), date));
+        report.add(CourseSession.create(new Course("ITAL", "410"), date));
         assertEquals("CZEC 200" + NEWLINE + "ENGL 101" + NEWLINE +
                 "ITAL 410" + NEWLINE, report.text());
         report = new CourseReport();
-        report.add(CourseSession.create("ENGL", "410", date));
-        report.add(CourseSession.create("ENGL", "200", date));
-        report.add(CourseSession.create("ENGL", "101", date));
+        report.add(CourseSession.create(new Course("ENGL", "410"), date));
+        report.add(CourseSession.create(new Course("ENGL", "200"), date));
+        report.add(CourseSession.create(new Course("ENGL", "101"), date));
         assertEquals("ENGL 101" + NEWLINE + "ENGL 200" + NEWLINE +
                 "ENGL 410" + NEWLINE, report.text());
-
 
     }
 

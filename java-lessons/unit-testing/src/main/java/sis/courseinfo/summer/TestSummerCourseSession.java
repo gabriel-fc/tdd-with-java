@@ -1,10 +1,7 @@
 package sis.courseinfo.summer;
 
 import org.junit.Test;
-import sis.courseinfo.CourseSession;
-import sis.courseinfo.DateUtil;
-import sis.courseinfo.Session;
-import sis.courseinfo.SessionTest;
+import sis.courseinfo.*;
 
 import java.util.Date;
 
@@ -26,7 +23,7 @@ public class TestSummerCourseSession extends SessionTest{
             String department,
             String number,
             Date date) {
-        return SummerCourseSession.create(department, number, date);
+        return SummerCourseSession.create(new Course(department, number), date);
     }
 
 

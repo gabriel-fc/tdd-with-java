@@ -4,21 +4,17 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import sis.courseinfo.Course;
 import sis.courseinfo.CourseSession;
 
 
 public class SummerCourseSession extends CourseSession {
     public static SummerCourseSession create(
-            String department,
-            String number,
-            Date startDate) {
-        return new SummerCourseSession(department, number, startDate);
+            Course course, Date startDate) {
+        return new SummerCourseSession(course, startDate);
     }
-    private SummerCourseSession(
-            String department,
-            String number,
-            Date startDate) {
-        super(department, number, startDate);
+    private SummerCourseSession(Course course, Date startDate) {
+        super(course, startDate);
     }
     public Date getEndDate() {
         GregorianCalendar calendar = new GregorianCalendar();

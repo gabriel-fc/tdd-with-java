@@ -8,17 +8,14 @@ import java.util.*;
 
 abstract public class Session implements Comparable<Session>, Iterable<Student> {
     private static int count;
-    private String department;
-    private String number;
     private List<Student> students = new ArrayList<Student>();
     private Date startDate;
     private int numberOfCredits;
     private URL url;
+    private Course course;
 
-    protected Session(
-            String department, String number, Date startDate) {
-        this.department = department;
-        this.number = number;
+    protected Session(Course course, Date startDate) {
+        this.course = course;
         this.startDate = startDate;
     }
     public int compareTo(Session that) {
@@ -32,10 +29,10 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
         this.numberOfCredits = numberOfCredits;
     }
     public String getDepartment() {
-        return department;
+        return course.getDepartment();
     }
     public String getNumber() {
-        return number;
+        return course.getNumber();
     }
     public int getNumberOfStudents() {
         return students.size();

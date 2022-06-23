@@ -3,7 +3,12 @@ package sis.courseinfo;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.Assert.*;
 
 public class CourseTest{
 
@@ -12,4 +17,35 @@ public class CourseTest{
         Course course = new Course("CMSC", "120");
         assertEquals("CMSC", course.getDepartment());
         assertEquals("120", course.getNumber());
-    }}
+    }
+
+    @Test
+    public void testEquality() {
+        Course courseA = new Course("NURS", "201");
+        Course courseAPrime = new Course("NURS", "201");
+        assertEquals(courseA, courseAPrime);
+        Course courseB = new Course("ARTH", "330");
+        assertFalse(courseA.equals(courseB));
+        // reflexivity
+        assertEquals(courseA, courseA);
+        // transitivity
+        Course courseAPrime2 = new Course("NURS", "201");
+        assertEquals(courseAPrime, courseAPrime2);
+        assertEquals(courseA, courseAPrime2);
+        // symmetry
+        assertEquals(courseAPrime, courseA);
+        // consistency
+        assertEquals(courseA, courseAPrime);
+        // comparison to null
+        assertFalse(courseA.equals(null));
+// apples & oranges
+        assertFalse(courseA.equals("CMSC-120"));
+    }
+    @Test
+    public void testHashCode() {
+        Course courseA = new Course("NURS", "201");
+        Course courseAPrime = new Course("NURS", "201");assertEquals(courseA.hashCode(), courseAPrime.hashCode());
+        // consistency
+        assertEquals(courseA.hashCode(), courseA.hashCode());
+    }
+}

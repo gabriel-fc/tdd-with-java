@@ -13,4 +13,22 @@ public class Course {
     public String getNumber() {
         return number;
     }
+
+
+    @Override
+    public boolean equals(Object object){
+        if (!(object instanceof Course)) return false;
+        return object.getClass() == Course.class &&
+                ((Course) object).getDepartment().equals(this.getDepartment()) &&
+                ((Course)object).getNumber().equals(this.getNumber());
+    }
+
+    @Override
+    public int hashCode() {
+        final int hashMultiplier = 41;
+        int result = 7;
+        result = result * hashMultiplier + department.hashCode();
+        result = result * hashMultiplier + number.hashCode();
+        return result;
+    }
 }

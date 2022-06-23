@@ -48,4 +48,9 @@ public class CourseTest{
         // consistency
         assertEquals(courseA.hashCode(), courseA.hashCode());
     }
+    @Test
+    public void testToString() {
+        Course course = new Course("ENGL", "301");
+        assertEquals("ENGL 301", course.toString());
+    }
 }

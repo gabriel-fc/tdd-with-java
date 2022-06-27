@@ -1,4 +1,4 @@
-package otherexercises.string;
+package otherexercises.stringexercise;
 
 import java.util.*;
 
@@ -13,8 +13,16 @@ public class WordCount {
             if (map.containsKey(key)) map.replace(key, map.get(key) + 1);
             else map.put(key, 1);
         }
-        System.out.println(map.entrySet());
         return map.entrySet();
+    }
+
+    public boolean contains(String word){
+        return map.containsKey(word);
+    }
+
+    public int getIncidence(String word){
+        if (contains(word)) return map.get(word);
+        return 0;
     }
 
     public WordCount(){

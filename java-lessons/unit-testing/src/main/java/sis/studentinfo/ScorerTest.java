@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class TestScorer {
+public class ScorerTest {
     @Test
     public void testBadScoreEntered() {
         Scorer scorer = new Scorer();

@@ -1,8 +1,9 @@
 package sis.studentinfo;
 
+import jdk.swing.interop.SwingInterOpUtils;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class PerformanceTest {
     private static final double tolerance = 0.005;
@@ -52,10 +53,16 @@ public class PerformanceTest {
     public void testPartialDimensions() {
         final int rows = 3;
         int[][] matrix = new int[rows][];
-        matrix[0] = new int[]{0 };
+        matrix[0] = new int[]{0};
         matrix[1] = new int[]{1, 2 };
         matrix[2] = new int[]{3, 4, 5 };
         assertEquals(1, matrix[1][0]);
         assertEquals(5, matrix[2][2]);
+    }
+
+    @Test
+    public void testAverageForNoScores() {
+        Performance performance = new Performance();
+        assertFalse(Double.isNaN(performance.average()));
     }
 }

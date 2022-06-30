@@ -2,13 +2,12 @@ package otherexercises.numberexercise;
 
 import org.junit.Test;
 
-import javax.crypto.AEADBadTagException;
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -160,24 +159,73 @@ public class NumberTest {
         }
     }
 
+
     @Test
     public void q19(){
         ArrayList<Integer> numbers = new ArrayList<>();
-        for (int i = 1; i <= 100 ; i++) {
-            numbers.add(i);
-        }
+        fillList(numbers);
         for (int i = 0; i < 100; i++) {
             swap(numbers, generateNumber(), generateNumber());
         }
     }
-
-    public void swap(ArrayList<Integer> list, int a, int b){
+    private void fillList(List list){
+        for (int i = 1; i <= 100; i++) {
+            list.add(i);
+        }
+    }
+    private void swap(ArrayList<Integer> list, int a, int b){
         int x = list.get(a);
         list.set(a, list.get(b));
         list.set(b, x);
     }
-    public int generateNumber(){
-        return (int)(Math.random() * 100);
+
+    private Generator gen;
+    private int generateNumber(){
+        if (gen == null) gen = new Generator();
+        return gen.nextInt(100);
+    }
+
+    public class Generator {
+        final long seed = System.currentTimeMillis();
+        final Random gen = new Random(seed);
+
+        public int nextInt(int bound) {
+            return gen.nextInt(bound);
+        }
+    }
+
+    @Test
+    public void q20(){
+        assertEquals(new Random(1).nextDouble(), new Random(1).nextDouble(), 0.0);
+        assertNotEquals(new Random(1).nextDouble(), new Random().nextDouble());
+    }
+
+    @Test
+    public void q21(){
+        int x = 20, y = 30;
+        x = x ^ y;
+        y = x ^ y;
+        x = x ^ y;
+        assertEquals(30, x);
+        assertEquals(20, y);
+
+        int t = Integer.MAX_VALUE, i;
+        for (i = 1; t > 0 ; i++) {
+            System.out.println(t);
+            t = t >> 1;
+        }
+        System.out.println(i);
+    }
+
+    @Test
+    public void q22(){
+        int x = Character.MAX_VALUE;
+        char y = Character.MATH_SYMBOL;
+        assertEquals(Character.MIN_VALUE,(char)(Character.MAX_VALUE >> 16));
+        assertEquals((byte) 0,(byte) (Byte.MAX_VALUE >> 8));
+        assertEquals((short) 0, (short) (Short.MAX_VALUE >> 16));
+        assertEquals(0, Integer.MAX_VALUE >>> 31);
+        assertEquals((long) 0, Long.MAX_VALUE >>> 63);
     }
 }
 

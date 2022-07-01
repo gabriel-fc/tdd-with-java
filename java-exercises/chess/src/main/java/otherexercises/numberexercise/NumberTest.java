@@ -144,6 +144,11 @@ public class NumberTest {
     }
 
     @Test
+    public void q16(){
+        assertEquals(-2, ~1);
+    }
+
+    @Test
     public void q17(){
         assertEquals(-1,-1>>1);
         assertEquals(2147483647,-1>>>1);//max int

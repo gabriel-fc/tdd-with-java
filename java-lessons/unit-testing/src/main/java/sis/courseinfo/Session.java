@@ -2,11 +2,14 @@ package sis.courseinfo;
 
 import sis.studentinfo.Student;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 
-abstract public class Session implements Comparable<Session>, Iterable<Student> {
+abstract public class Session implements Comparable<Session>,
+        Iterable<Student>,
+        Serializable {
     private static int count;
     private List<Student> students = new ArrayList<Student>();
     private Date startDate;
@@ -25,7 +28,7 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
             return compare;
         return this.getNumber().compareTo(that.getNumber());
     }
-    void setNumberOfCredits(int numberOfCredits) {
+    public void setNumberOfCredits(int numberOfCredits) {
         this.numberOfCredits = numberOfCredits;
     }
     public String getDepartment() {
@@ -44,7 +47,7 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
     Student get(int index) {
         return students.get(index);
     }
-    protected Date getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
     public List<Student> getAllStudents() {
@@ -99,5 +102,8 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
         return students.iterator();
     }
 
+    public int getNumberOfCredits() {
+        return getNumberOfCredits();
+    }
 }
 

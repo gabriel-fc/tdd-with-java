@@ -1,10 +1,11 @@
 package sis.studentinfo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class Student {
+public class Student implements Serializable {
     public enum Grade {
         A(4),
         B(3),
@@ -22,6 +23,7 @@ public class Student {
     public static final int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
     public static final String IN_STATE = "CO";
 
+    private String id = "";
     private GradingStrategy gradingStrategy = new BasicGradingStrategy();
 
 
@@ -30,8 +32,6 @@ public class Student {
     private String middleName = "";
     private String lastName ="";
     private int credits;
-
-    private String id;
 
     private boolean isHonors = false;
 
@@ -175,4 +175,9 @@ public class Student {
     public String getId() {
         return id;
     }
+
+    public static Student findByLastName(String lastName) {
+        return new Student(lastName);
+    }
+
 }

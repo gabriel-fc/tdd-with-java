@@ -2,6 +2,9 @@ package sis.courseinfo;
 
 import sis.studentinfo.Student;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,8 +13,9 @@ import java.util.*;
 abstract public class Session implements Comparable<Session>,
         Iterable<Student>,
         Serializable {
-    private static int count;
-    private List<Student> students = new ArrayList<Student>();
+    public static  final long serialVersionUID = 1L;
+    private String name;
+    private transient List<Student> students = new ArrayList<Student>();
     private Date startDate;
     private int numberOfCredits;
     private URL url;
@@ -103,7 +107,25 @@ abstract public class Session implements Comparable<Session>,
     }
 
     public int getNumberOfCredits() {
-        return getNumberOfCredits();
+        return numberOfCredits;
+    }
+
+    private void writeObject(ObjectOutputStream output)
+            throws IOException {
+        output.defaultWriteObject();
+        output.writeInt(students.size());
+        for (Student student: students)
+            output.writeObject(student.getLastName());
+    }
+    private void readObject(ObjectInputStream input)
+            throws Exception {
+        input.defaultReadObject();
+        students = new ArrayList<Student>();
+        int size = input.readInt();
+        for (int i = 0; i < size; i++) {
+            String lastName = (String)input.readObject();
+            students.add(Student.findByLastName(lastName));
+        }
     }
 }
 

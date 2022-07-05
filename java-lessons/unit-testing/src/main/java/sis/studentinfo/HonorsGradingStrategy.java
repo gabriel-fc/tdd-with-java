@@ -1,7 +1,9 @@
 package sis.studentinfo;
 
+import java.io.Serializable;
+
 public class HonorsGradingStrategy
-        extends BasicGradingStrategy {
+        extends BasicGradingStrategy implements Serializable {
 
     public int getGradePointsFor(Student.Grade grade){
         int points = super.getGradePointsFor(grade);

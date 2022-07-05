@@ -11,8 +11,24 @@ public class StudentDirectoryTest {
     private StudentDirectory dir;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         dir = new StudentDirectory();
+    }
+
+    protected void tearDown() throws IOException {
+        dir.close();
+        dir.remove();
+    }
+
+    @Test
+    public void testRandomAccess() throws IOException {
+        final int numberOfStudents = 10;
+        for (int i = 0; i < numberOfStudents; i++)
+            addStudent(dir, i);
+        dir.close();
+        dir = new StudentDirectory();
+        for (int i = 0; i < numberOfStudents; i++)
+            verifyStudentLookup(dir, i);
     }
 
     @Test
@@ -22,6 +38,8 @@ public class StudentDirectoryTest {
             addStudent(dir, i);
         for (int i = 0; i < numberOfStudents; i++)verifyStudentLookup(dir, i);
     }
+
+
     void addStudent(StudentDirectory directory, int i)
             throws IOException {
         String id = "" + i;

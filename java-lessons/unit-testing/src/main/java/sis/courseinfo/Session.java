@@ -120,7 +120,7 @@ abstract public class Session implements Comparable<Session>,
     private void readObject(ObjectInputStream input)
             throws Exception {
         input.defaultReadObject();
-        students = new ArrayList<Student>();
+        students = new ArrayList<>();
         int size = input.readInt();
         for (int i = 0; i < size; i++) {
             String lastName = (String)input.readObject();

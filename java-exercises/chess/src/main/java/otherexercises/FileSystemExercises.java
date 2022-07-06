@@ -26,21 +26,40 @@ public class FileSystemExercises {
 
     @Test
     public void q2() throws IOException{
-        FileWriter writer = new FileWriter("file-q2.text");
-        writer.write("a");
-        writer.close();
+//        FileWriter writer = new FileWriter("file-q2.txt");
+//        writer.write("a");
+//        writer.close();
+        FileWriter writer = new FileWriter("file-q2.txt");
+        BufferedWriter buffer = new BufferedWriter(writer);
+        String text = "a";
+        int dif = 0, i;
+        for (i = 1; dif < 3; i++) {
+            text = getStringX10(text);
+            dif = getDifferenceOfEfficiency(text, writer, buffer);
+        }
+        System.out.println("Com texto de " + Math.pow(10, i) + " caracteres, o writer bufferizado foi " + dif +
+                " vezes mais rápido");
+
     }
 
-    public void getDifferenceOfEfficiency(String input, ){
+    public int getDifferenceOfEfficiency(String input, FileWriter writer, BufferedWriter buffer) throws IOException{
+
         long time1 = System.currentTimeMillis();
+        writer.write(input);
+        time1 = System.currentTimeMillis() - time1;
+        long time2 = System.currentTimeMillis();
+        buffer.write(input);
+        time2 = System.currentTimeMillis() - time2;
+        return time2 != 0 ? (int)(time1/time2) : 0;
 
     }
 
-    private String getStringX10(int power){
+    private String getStringX10(String input){
         String output = "";
-        for (int i = 0; i < (int) Math.pow(10, power); i++) {
-            output += 'a';
+        for (int i = 0; i < 10; i++) {
+            output += input;
         }
         return output;
     }
 }
+

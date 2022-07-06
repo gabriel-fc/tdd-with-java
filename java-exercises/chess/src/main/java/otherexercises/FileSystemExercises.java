@@ -33,33 +33,29 @@ public class FileSystemExercises {
         BufferedWriter buffer = new BufferedWriter(writer);
         String text = "a";
         int dif = 0, i;
-        for (i = 1; dif < 3; i++) {
-            text = getStringX10(text);
-            dif = getDifferenceOfEfficiency(text, writer, buffer);
+        for (i = 1; dif < 5; i++) {
+            //text = getStringX10(text);
+            dif = getDifferenceOfEfficiency(i, writer, buffer);
         }
         System.out.println("Com texto de " + Math.pow(10, i) + " caracteres, o writer bufferizado foi " + dif +
                 " vezes mais rápido");
 
     }
 
-    public int getDifferenceOfEfficiency(String input, FileWriter writer, BufferedWriter buffer) throws IOException{
+    public int getDifferenceOfEfficiency(int power, FileWriter writer, BufferedWriter buffer) throws IOException{
 
         long time1 = System.currentTimeMillis();
-        writer.write(input);
+        for (int i = 0; i < Math.pow(10, power); i++) {
+            writer.write("a");
+        }
         time1 = System.currentTimeMillis() - time1;
         long time2 = System.currentTimeMillis();
-        buffer.write(input);
+        for (int i = 0; i < Math.pow(10, power); i++) {
+            buffer.write("a");
+        }
         time2 = System.currentTimeMillis() - time2;
         return time2 != 0 ? (int)(time1/time2) : 0;
 
-    }
-
-    private String getStringX10(String input){
-        String output = "";
-        for (int i = 0; i < 10; i++) {
-            output += input;
-        }
-        return output;
     }
 }
 

@@ -1,4 +1,4 @@
-package otherexercises;
+package otherexercises.fileexercises;
 
 import org.junit.Test;
 
@@ -28,13 +28,13 @@ public class FileSystemExercises {
     public void q2() throws IOException{
         FileWriter writer = new FileWriter("file-q2.txt");
         BufferedWriter buffer = new BufferedWriter(writer);
-        String text = "a";
         int dif = 0, i;
         for (i = 1; dif < 5; i++) {
             dif = getDifferenceOfEfficiency(i, writer, buffer);
         }
-        System.out.println("Com texto de " + Math.pow(10, i) + " caracteres, o writer bufferizado foi " + dif +
+        System.out.println("Com texto de " + (int)Math.pow(10, i) + " caracteres, o writer bufferizado foi " + dif +
                 " vezes mais rápido");
+        writer.close();
     }
 
     private void write(int power, Writer writer) throws IOException{
@@ -52,6 +52,12 @@ public class FileSystemExercises {
         write(power, buffer);
         time2 = System.currentTimeMillis() - time2;
         return time2 != 0 ? (int)(time1/time2) : 0;
+    }
+
+
+    @Test
+    public void q3(){
+
     }
 }
 

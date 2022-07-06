@@ -26,36 +26,32 @@ public class FileSystemExercises {
 
     @Test
     public void q2() throws IOException{
-//        FileWriter writer = new FileWriter("file-q2.txt");
-//        writer.write("a");
-//        writer.close();
         FileWriter writer = new FileWriter("file-q2.txt");
         BufferedWriter buffer = new BufferedWriter(writer);
         String text = "a";
         int dif = 0, i;
         for (i = 1; dif < 5; i++) {
-            //text = getStringX10(text);
             dif = getDifferenceOfEfficiency(i, writer, buffer);
         }
         System.out.println("Com texto de " + Math.pow(10, i) + " caracteres, o writer bufferizado foi " + dif +
                 " vezes mais rápido");
+    }
 
+    private void write(int power, Writer writer) throws IOException{
+        for (int i = 0; i < Math.pow(10, power); i++) {
+            writer.write("a");
+        }
     }
 
     public int getDifferenceOfEfficiency(int power, FileWriter writer, BufferedWriter buffer) throws IOException{
 
         long time1 = System.currentTimeMillis();
-        for (int i = 0; i < Math.pow(10, power); i++) {
-            writer.write("a");
-        }
+        write(power, writer);
         time1 = System.currentTimeMillis() - time1;
         long time2 = System.currentTimeMillis();
-        for (int i = 0; i < Math.pow(10, power); i++) {
-            buffer.write("a");
-        }
+        write(power, buffer);
         time2 = System.currentTimeMillis() - time2;
         return time2 != 0 ? (int)(time1/time2) : 0;
-
     }
 }
 

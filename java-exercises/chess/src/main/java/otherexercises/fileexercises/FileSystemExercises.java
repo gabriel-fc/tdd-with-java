@@ -3,9 +3,12 @@ package otherexercises.fileexercises;
 import org.junit.Test;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
+import static java.util.stream.Collectors.joining;
+import static org.junit.Assert.*;
 
 public class FileSystemExercises {
     @Test
@@ -18,10 +21,8 @@ public class FileSystemExercises {
         bufferIn.write(text);
         bufferIn.close();
         BufferedReader bufferOut = new BufferedReader(new FileReader("file-system-exercise.txt"));
-        String output =   bufferOut.lines().collect(Collectors.joining());
+        String output =   bufferOut.lines().collect(joining());
         assertEquals(text, output);
-
-
     }
 
     @Test
@@ -56,7 +57,42 @@ public class FileSystemExercises {
 
 
     @Test
-    public void q3(){
+    public void q3() throws IOException{
+        MyFile myFile = new MyFile("file-q3.txt");
+        myFile.clear();
+        ArrayList<String> input = new ArrayList<>(Arrays.asList("joao", "maria", "lucas", "claudia"));
+        myFile.writeString("carlos");
+        assertEquals("carlos ", myFile.getFileAsString());
+        myFile.writeListOfStrings(input);
+        assertEquals("carlos " + input.stream().collect(joining(" ")) + " ",
+                myFile.getFileAsString());
+        try {
+            myFile.deleteFile();
+            myFile.writeString("carlos");
+            fail("should've thrown an exception");
+        }catch (FileDoesNotExistException e){
+            myFile.recreate();
+        }
+    }
+
+    @Test
+    public void q4() {
+        String dirPath = "q4-dir";
+        Dir dir = new Dir(dirPath);
+        new File(dirPath).delete();
+        dir.ensureExists();
+        assertTrue(new File(dirPath).exists());
+        new File(dirPath).delete();
+        try{
+            dir.getFiles();
+            fail("should've thrown an exception");
+        }catch (DirDoesNotExistException e){
+            dir.ensureExists();
+        }
+        ArrayList<MyFile> files = new ArrayList<>(Arrays.asList(new MyFile("arq1"),
+                new MyFile("arq2"), new MyFile("arq3")));
+        dir.setFiles(files);
+        assertEquals(dir.getFiles(), files);
 
     }
 }

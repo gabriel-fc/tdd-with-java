@@ -1,0 +1,1 @@
+Create a test to write the text of this exercise to the file system. The test should read the file back in and make assertions about the content. Ensure that you can run the test multiple times and have it pass. Finally, make sure that there are no leftover files when the test finishes, even if an exception is thrown.

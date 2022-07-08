@@ -1,8 +1,11 @@
 package otherexercises.fileexercises;
 
+import chess.pieces.Piece;
+import chess.pieces.types.Pawn;
 import org.junit.Test;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -94,6 +97,63 @@ public class FileSystemExercises {
         dir.setFiles(files);
         assertEquals(dir.getFiles(), files);
 
+    }
+
+
+    /*
+    Code a test that shows the use of a ByteArrayOutputStream to capture an exception and
+    dump the stack trace into a string. Code it with and without an OutputStreamWriter. In both
+    the character version and the byte version, use buffered readers and writers.
+     */
+    @Test
+    public void q5()throws IOException{
+        try{
+            throw new RuntimeException();
+        }catch (RuntimeException e){
+            byteVersion(e.getStackTrace());
+            charVersion(e.getStackTrace());
+        }
+    }
+    private void charVersion(StackTraceElement[] stack) throws IOException{
+        OutputStreamWriter outputStream = new OutputStreamWriter(new ByteArrayOutputStream());
+        BufferedWriter buffer = new BufferedWriter(outputStream);
+
+        long time = System.currentTimeMillis();
+        outputStream.write(Arrays.stream(stack)
+                .map(StackTraceElement::toString)
+                .collect(joining("\n")));
+        outputStream.flush();
+        System.out.println("exec time with writer: " + (System.currentTimeMillis() - time));
+        buffer.write(Arrays.stream(stack)
+                .map(StackTraceElement::toString)
+                .collect(joining("\n")));
+
+        buffer.flush();
+
+        System.out.println("exec time with buffered writer: " + (System.currentTimeMillis() - time));
+    }
+
+    private void byteVersion(StackTraceElement[] stack) throws IOException{
+
+        OutputStream outputStream = new ByteArrayOutputStream();
+        BufferedOutputStream buffer = new BufferedOutputStream(outputStream);
+
+        long time = System.currentTimeMillis();
+        for (StackTraceElement el: stack) {
+            for (int i = 0; i < el.toString().length(); i++) {
+                outputStream.write(el.toString().charAt(i));
+            }
+            outputStream.write('\n');
+        }
+        System.out.println("exec time with ByteArray: " + (System.currentTimeMillis() - time));
+        buffer.write(Arrays.stream(stack)
+                .map(StackTraceElement::toString)
+                .collect(joining("\n"))
+                .getBytes(StandardCharsets.UTF_8));
+
+        buffer.flush();
+
+        System.out.println("exec time with buffered bytearray: " + (System.currentTimeMillis() - time));
     }
 }
 

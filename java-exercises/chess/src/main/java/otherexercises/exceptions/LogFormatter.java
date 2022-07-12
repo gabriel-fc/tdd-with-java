@@ -1,10 +1,8 @@
 package otherexercises.exceptions;
 
-import util.StringUtil;
+import chess.util.StringUtil;
 
-import java.text.Format;
 import java.util.logging.Formatter;
-import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
 public class LogFormatter extends Formatter {

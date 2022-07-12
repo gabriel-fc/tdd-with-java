@@ -1,9 +1,8 @@
 package chess.board;
 
-import chess.board.Board;
-import util.StringUtil;
+import chess.util.StringUtil;
 
-import static util.StringUtil.NEWLINE;
+import static chess.util.StringUtil.NEWLINE;
 
 public class BoardInterface {
     private BoardInterface(){};

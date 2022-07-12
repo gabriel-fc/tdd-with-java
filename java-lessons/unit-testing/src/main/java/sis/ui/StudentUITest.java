@@ -1,7 +1,6 @@
 package sis.ui;
 
 import junit.framework.*;
-import org.junit.Test;
 import sis.studentinfo.Student;
 
 import java.io.*;

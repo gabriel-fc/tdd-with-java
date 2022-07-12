@@ -30,31 +30,34 @@ public class FileSystemExercises {
 
     @Test
     public void q2() throws IOException{
-        FileWriter writer = new FileWriter("file-q2.txt");
-        BufferedWriter buffer = new BufferedWriter(writer);
         int dif = 0, i;
         for (i = 1; dif < 5; i++) {
-            dif = getDifferenceOfEfficiency(i, writer, buffer);
+            dif = getDifferenceOfEfficiency(i);
         }
-        System.out.println("Com texto de " + (int)Math.pow(10, i) + " caracteres, o writer bufferizado foi " + dif +
+        System.out.println("Com texto de "
+                + (int)Math.pow(10, i)
+                + " caracteres, " +
+                "o writer bufferizado foi " + dif +
                 " vezes mais rápido");
-        writer.close();
     }
 
     private void write(int power, Writer writer) throws IOException{
         for (int i = 0; i < Math.pow(10, power); i++) {
             writer.write("a");
         }
+        writer.flush();
     }
 
-    public int getDifferenceOfEfficiency(int power, FileWriter writer, BufferedWriter buffer) throws IOException{
-
+    public int getDifferenceOfEfficiency(int power) throws IOException{
+        FileWriter writer = new FileWriter("file-q2.txt");
+        BufferedWriter buffer = new BufferedWriter(writer);
         long time1 = System.currentTimeMillis();
         write(power, writer);
         time1 = System.currentTimeMillis() - time1;
         long time2 = System.currentTimeMillis();
         write(power, buffer);
         time2 = System.currentTimeMillis() - time2;
+        writer.close();
         return time2 != 0 ? (int)(time1/time2) : 0;
     }
 
@@ -155,5 +158,11 @@ public class FileSystemExercises {
 
         System.out.println("exec time with buffered bytearray: " + (System.currentTimeMillis() - time));
     }
+//    @Test
+//    public void q6() throws IOException {
+//        //BufferedWriter buffer = new BufferedWriter(new ObjectOutputStream("file-q6"));
+//        ObjectOutputStream buffer =new ObjectOutputStream(new FileOutputStream("file-q6"));
+//        buffer.writeObject();
+//    }
 }
 

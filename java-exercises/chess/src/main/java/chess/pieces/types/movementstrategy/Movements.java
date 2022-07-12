@@ -2,11 +2,12 @@ package chess.pieces.types.movementstrategy;
 
 import chess.board.Board;
 import chess.pieces.Piece;
-import util.StringUtil;
+import chess.util.StringUtil;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Movements {
+public class Movements implements Serializable {
 
 
     public String moveOneSquareInDirection(String currentPosition, Piece.Color color,

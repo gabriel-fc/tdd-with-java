@@ -2,13 +2,13 @@ package chess.board;
 
 import chess.pieces.Piece;
 import chess.pieces.types.NoPiece;
-import util.StringUtil;
+import chess.util.StringUtil;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class Board implements Iterable<Piece[]> {
-
+public class Board implements Iterable<Piece[]>, Serializable{
     private Piece[][] board;
     private int piecesCount;
 
@@ -153,5 +153,23 @@ public class Board implements Iterable<Piece[]> {
         return getPiece(position).getClass() == NoPiece.class;
     }
     @Override
-    public Iterator<Piece[]> iterator() {return Arrays.asList(board).iterator();}}
+    public Iterator<Piece[]> iterator() {return Arrays.asList(board).iterator();}
 
+    private void persistPieces(ObjectOutputStream output){
+    }
+
+    public boolean equals(Object that){
+        return (that.getClass() == Board.class &&
+                compareBoard((Board)that));
+
+    }
+
+    private boolean compareBoard(Board that){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(!board[i][j].equals(that.getPiece(StringUtil.setPosition(j, i)))) return false;
+            }
+        }
+        return true;
+    }
+}

@@ -1,12 +1,10 @@
 package otherexercises.exceptions;
 
-import chess.game.Game;
 import org.junit.Test;
-import util.StringUtil;
+import chess.util.StringUtil;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Scanner;
 import java.util.logging.*;
 
 import static org.junit.Assert.assertEquals;

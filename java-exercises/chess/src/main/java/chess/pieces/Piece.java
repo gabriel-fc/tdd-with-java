@@ -1,11 +1,12 @@
 package chess.pieces;
 import chess.pieces.types.*;
 import chess.pieces.types.movementstrategy.Movements;
-import util.StringUtil;
+import chess.util.StringUtil;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Piece{
+public class Piece implements Serializable {
 
     private final Color color;
     private final char representation;
@@ -107,4 +108,8 @@ public class Piece{
         return piece.getColor() != this.color;
     }
 
+    public boolean equals(Piece that){
+        return this.getClass() == that.getClass() &&
+                this.color == that.getColor();
+    }
 }

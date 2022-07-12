@@ -3,7 +3,7 @@ package chess.board;
 import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
-import util.StringUtil;
+import chess.util.StringUtil;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

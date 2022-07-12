@@ -15,7 +15,8 @@ public class SerializedBoardTest {
         BoardFile db = new BoardFile();
         Board board = new Board();
         board.initialize();
-        db.persist(board);
-        assertEquals(board, db.getBoard());
+        db.persist(board, BoardInterface.printBoard(board));
+        assertEquals(board, db.getBoardObject());
+        assertEquals(BoardInterface.printBoard(board), db.getBoardRepresentation());
     }
 }

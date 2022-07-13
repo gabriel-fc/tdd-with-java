@@ -1,14 +1,11 @@
 package otherexercises.fileexercises;
 
-import chess.pieces.Piece;
-import chess.pieces.types.Pawn;
 import org.junit.Test;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 import static org.junit.Assert.*;
@@ -158,11 +155,38 @@ public class FileSystemExercises {
 
         System.out.println("exec time with buffered bytearray: " + (System.currentTimeMillis() - time));
     }
-//    @Test
-//    public void q6() throws IOException {
-//        //BufferedWriter buffer = new BufferedWriter(new ObjectOutputStream("file-q6"));
-//        ObjectOutputStream buffer =new ObjectOutputStream(new FileOutputStream("file-q6"));
-//        buffer.writeObject();
-//    }
+
+    @Test
+    public void q8(){
+        //won't compile
+        //Attributes att = new Attributes("file");
+    }
+
+    @Test
+    public void q9(){
+        //compiles because it's a static nested class
+        Dir.Attributes att = new Dir.Attributes("file");
+    }
+
+    @Test
+    public void q10() throws IOException{
+        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+        DataOutputStream out = new DataOutputStream(byteArray);
+        out.writeChar('c');
+        assertEquals(byteArray.size(), 2);
+        byteArray.reset();
+        out.writeLong(1);
+        assertEquals(byteArray.size(), 8);
+        byteArray.reset();
+        out.writeInt(1);
+        assertEquals(byteArray.size(), 4);
+        byteArray.reset();
+        out.writeDouble(1);
+        assertEquals(byteArray.size(), 8);
+        byteArray.reset();
+        out.writeFloat(1);
+        assertEquals(byteArray.size(), 4);
+        byteArray.reset();
+    }
 }
 

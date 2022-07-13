@@ -40,61 +40,61 @@ public class Movements implements Serializable {
         return possibleMoves;
     }
 
-    public class Forward implements MoveStrategy{
+    public static class Forward implements MoveStrategy{
         public String move(String currentPosition, Piece.Color color){
             return (Movements.execute(currentPosition, color, -1, 0, new Backward()));
         }
 
     }
 
-    public class Backward implements MoveStrategy{
+    public static class Backward implements MoveStrategy{
         public String move(String currentPosition, Piece.Color color){
             return (Movements.execute(currentPosition, color, 1, 0, new Forward()));
         }
     }
 
-    public class Right implements MoveStrategy{
+    public static class Right implements MoveStrategy{
         public String move(String currentPosition, Piece.Color color){
             return (Movements.execute(currentPosition, color, 0, 1, new Left()));
         }
 
     }
 
-    public class Left implements MoveStrategy{
+    public static class Left implements MoveStrategy{
         public String move(String currentPosition, Piece.Color color){
             return (Movements.execute(currentPosition, color, 0, -1, new Right()));
         }
     }
 
-    public class LeftForward implements MoveStrategy{
+    public static class LeftForward implements MoveStrategy{
         public String move(String currentPosition, Piece.Color color){
             return (Movements.execute(currentPosition, color, -1, -1,
                     new RightBackward()));
         }
     }
 
-    public class RightForward implements MoveStrategy{
+    public static class RightForward implements MoveStrategy{
         public String move(String currentPosition, Piece.Color color){
             return (Movements.execute(currentPosition, color, -1, 1,
                     new LeftBackward()));
         }
     }
 
-    public class LeftBackward implements MoveStrategy{
+    public static class LeftBackward implements MoveStrategy{
         public String move(String currentPosition, Piece.Color color){
             return (Movements.execute(currentPosition, color, 1, -1,
                     new RightForward()));
         }
     }
 
-    public class RightBackward implements MoveStrategy{
+    public static class RightBackward implements MoveStrategy{
         public String move(String currentPosition, Piece.Color color){
             return (Movements.execute(currentPosition, color, 1, 1,
                     new LeftForward()));
         }
     }
 
-    public static interface MoveStrategy {
+    public interface MoveStrategy {
         public String move(String currentPosition, Piece.Color color);
     }
 

@@ -1,6 +1,7 @@
 package chess.pieces.types;
 
 import chess.pieces.Piece;
+import chess.pieces.types.movementstrategy.Movements;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,28 +19,28 @@ public class King extends Piece {
     public ArrayList<String> getPossibleMoves(String position) {
         ArrayList<String> possibleMoves = new ArrayList();
         super.movements.moveOneSquareInDirection(position, super.getColor(),
-                movements.new Forward(), possibleMoves);
+                new Movements.Forward(), possibleMoves);
 
         super.movements.moveOneSquareInDirection(position, super.getColor(),
-                movements.new Backward(),possibleMoves);
+                new Movements.Backward(),possibleMoves);
 
         super.movements.moveOneSquareInDirection(position, super.getColor(),
-                movements.new Right(), possibleMoves);
+                new Movements.Right(), possibleMoves);
 
         super.movements.moveOneSquareInDirection(position, super.getColor(),
-                movements.new Left(), possibleMoves);
+                new Movements.Left(), possibleMoves);
 
         super.movements.moveOneSquareInDirection(position, super.getColor(),
-                movements.new RightForward(), possibleMoves);
+                new Movements.RightForward(), possibleMoves);
 
         super.movements.moveOneSquareInDirection(position, super.getColor(),
-                movements.new LeftForward(), possibleMoves);
+                new Movements.LeftForward(), possibleMoves);
 
         super.movements.moveOneSquareInDirection(position, super.getColor(),
-                movements.new RightBackward(), possibleMoves);
+                new Movements.RightBackward(), possibleMoves);
 
         super.movements.moveOneSquareInDirection(position, super.getColor(),
-                movements.new LeftBackward(), possibleMoves);
+                new Movements.LeftBackward(), possibleMoves);
 
         Collections.sort(possibleMoves);
         return possibleMoves;

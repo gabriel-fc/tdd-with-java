@@ -1,6 +1,7 @@
 package chess.pieces.types;
 
 import chess.pieces.Piece;
+import chess.pieces.types.movementstrategy.Movements;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,27 +15,27 @@ public class Queen extends Piece{
     public ArrayList<String> getPossibleMoves(String position){
         ArrayList<String> possibleMoves = new ArrayList();
         movements.moveInDirection(position, getColor(),
-                 movements.new Forward(), possibleMoves);
+                 new Movements.Forward(), possibleMoves);
 
         movements.moveInDirection(position, getColor(),
-                 movements.new Backward(), possibleMoves);
+                 new Movements.Backward(), possibleMoves);
 
         movements.moveInDirection(position, getColor(),
-                 movements.new Right(), possibleMoves);
+                 new Movements.Right(), possibleMoves);
 
         movements.moveInDirection(position, getColor(),
-                 movements.new Left(), possibleMoves);
+                 new Movements.Left(), possibleMoves);
 
         movements.moveInDirection(position, getColor(),
-                 movements.new RightForward(), possibleMoves);
+                 new Movements.RightForward(), possibleMoves);
 
         movements.moveInDirection(position, getColor(),
-                 movements.new LeftForward(), possibleMoves);
+                 new Movements.LeftForward(), possibleMoves);
 
-        movements.moveInDirection(position, getColor(), movements.new RightBackward(), possibleMoves);
+        movements.moveInDirection(position, getColor(), new Movements.RightBackward(), possibleMoves);
 
         movements.moveInDirection(position, getColor(),
-                 movements.new LeftBackward(), possibleMoves);
+                 new Movements.LeftBackward(), possibleMoves);
 
         Collections.sort(possibleMoves);
         return possibleMoves;

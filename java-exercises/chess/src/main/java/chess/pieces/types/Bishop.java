@@ -23,7 +23,7 @@ public class Bishop extends Piece {
 //    }
 
     private String diagonalLeftAndForward(String position){
-        return movements.new Forward().move(movements.new
-                LeftForward().move(position, super.getColor()), super.getColor());
+        return new Movements.Forward().move(new
+                Movements.LeftForward().move(position, super.getColor()), super.getColor());
     }
 }

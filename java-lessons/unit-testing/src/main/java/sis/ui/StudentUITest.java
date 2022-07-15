@@ -50,16 +50,4 @@ public class StudentUITest extends TestCase {
         Student student = students.get(0);
         assertEquals(name, student.getName());
     }
-
-//    @Test
-//    public void test(){
-//        Integer[] array = new Integer[]{16, 9, 4};
-//        List<Integer> list = Arrays.asList(array);
-//        System.out.println(list.stream().sorted().map(Math::sqrt).collect(Collectors.toList()));
-//        System.out.println(list.stream().sequential().map(x->Math.sqrt(x)).collect(Collectors.toList()));
-//        System.out.println(list.stream().reduce(0, (val, x)-> val + x));
-//
-//        System.out.println(list);
-//        System.out.println(array[0]);
-//    }
 }

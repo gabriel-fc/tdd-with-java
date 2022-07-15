@@ -41,24 +41,23 @@ public class FileSystemExercises {
         new File("file-q2.txt").delete();
     }
 
-    private void write(int power, Writer writer) throws IOException{
+    private long write(int power, Writer writer) throws IOException{
+        long timeBeforeExec = System.currentTimeMillis();
         for (int i = 0; i < Math.pow(10, power); i++) {
             writer.write("a");
         }
         writer.flush();
+        return System.currentTimeMillis() - timeBeforeExec;
     }
 
     public int getDifferenceOfEfficiency(int power) throws IOException{
         FileWriter writer = new FileWriter("file-q2.txt");
         BufferedWriter buffer = new BufferedWriter(writer);
-        long time1 = System.currentTimeMillis();
-        write(power, writer);
-        time1 = System.currentTimeMillis() - time1;
-        long time2 = System.currentTimeMillis();
-        write(power, buffer);
-        time2 = System.currentTimeMillis() - time2;
+        long timeWriter = write(power, writer);
+        long timeBuffer = write(power, buffer);
+        buffer.close();
         writer.close();
-        return time2 != 0 ? (int)(time1/time2) : 0;
+        return timeBuffer != 0 ? (int)(timeWriter/timeBuffer) : 0;
     }
 
 
@@ -113,51 +112,80 @@ public class FileSystemExercises {
         try{
             throw new RuntimeException();
         }catch (RuntimeException e){
-            byteVersion(e.getStackTrace());
-            charVersion(e.getStackTrace());
+            String expected = stackTraceToString(e.getStackTrace());
+
+            assertEquals(expected, byteArrayVersion(e.getStackTrace()));
+            assertEquals(expected, bufferedByteArrayVersion(e.getStackTrace()));
+            assertEquals(expected, charVersion(e.getStackTrace()));
+            assertEquals(expected, bufferedCharVersion(e.getStackTrace()));
         }
     }
-    private void charVersion(StackTraceElement[] stack) throws IOException{
-        OutputStreamWriter outputStream = new OutputStreamWriter(new ByteArrayOutputStream());
-        BufferedWriter buffer = new BufferedWriter(outputStream);
 
-        long time = System.currentTimeMillis();
-        outputStream.write(Arrays.stream(stack)
-                .map(StackTraceElement::toString)
-                .collect(joining("\n")));
-        outputStream.flush();
-        System.out.println("exec time with writer: " + (System.currentTimeMillis() - time));
-        buffer.write(Arrays.stream(stack)
-                .map(StackTraceElement::toString)
-                .collect(joining("\n")));
-
-        buffer.flush();
-
-        System.out.println("exec time with buffered writer: " + (System.currentTimeMillis() - time));
+    private String stackTraceToString(StackTraceElement[] stack){
+        return Arrays.stream(stack).
+                map(StackTraceElement::toString).
+                collect(joining("\n"));
     }
 
-    private void byteVersion(StackTraceElement[] stack) throws IOException{
+    private String charVersion(StackTraceElement[] stack) throws IOException{
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        OutputStreamWriter outputCharStream = new OutputStreamWriter(outputStream);
+        outputCharStream.write(stackTraceToString(stack));
+        outputCharStream.flush();
+        InputStreamReader input = new InputStreamReader(new ByteArrayInputStream(outputStream.toByteArray()));
+        StringBuilder outputString = new StringBuilder();
+        for (int i = 0; i < outputStream.size(); i++) {
+            outputString.append((char) input.read());
+        }
+        return outputString.toString();
+    }
 
-        OutputStream outputStream = new ByteArrayOutputStream();
+    private String bufferedCharVersion(StackTraceElement[] stack)throws IOException{
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+        bufferedWriter.write(stackTraceToString(stack));
+        bufferedWriter.flush();
+        BufferedReader input = new BufferedReader(
+                new InputStreamReader(new ByteArrayInputStream(outputStream.toByteArray()))
+        );
+        return input.lines().collect(joining("\n"));
+    }
+
+    private String byteArrayVersion(StackTraceElement[] stack) throws IOException{
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        StringBuilder output = new StringBuilder();
+
+        for (char c: stackTraceToString(stack).toCharArray()) {
+            outputStream.write(c);
+        }
+
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+        for (int i = 0; i < outputStream.size(); i++) {
+            output.append((char)inputStream.read());
+        }
+        outputStream.close();
+        inputStream.close();
+        return output.toString();
+    }
+
+    private String bufferedByteArrayVersion(StackTraceElement[] stack)throws IOException{
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         BufferedOutputStream buffer = new BufferedOutputStream(outputStream);
+        StringBuilder output = new StringBuilder();
 
-        long time = System.currentTimeMillis();
-        for (StackTraceElement el: stack) {
-            for (int i = 0; i < el.toString().length(); i++) {
-                outputStream.write(el.toString().charAt(i));
-            }
-            outputStream.write('\n');
+        for (char c: stackTraceToString(stack).toCharArray()) {
+            buffer.write(c);
         }
-        System.out.println("exec time with ByteArray: " + (System.currentTimeMillis() - time));
-        buffer.write(Arrays.stream(stack)
-                .map(StackTraceElement::toString)
-                .collect(joining("\n"))
-                .getBytes(StandardCharsets.UTF_8));
-
         buffer.flush();
-
-        System.out.println("exec time with buffered bytearray: " + (System.currentTimeMillis() - time));
+        BufferedInputStream inputStream = new BufferedInputStream(
+                new ByteArrayInputStream(outputStream.toByteArray()
+                ));
+        for (int i = 0; i < outputStream.size(); i++) {
+            output.append((char)inputStream.read());
+        }
+        return output.toString();
     }
+
 
     @Test
     public void q8(){

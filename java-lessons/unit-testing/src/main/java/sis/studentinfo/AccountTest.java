@@ -1,6 +1,7 @@
 package sis.studentinfo;
 
 import com.jimbob.ach.*;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,44 +23,7 @@ public class AccountTest {
     }
     @Test
     public void testTransferFromBank() {
-        Ach mockAch = new Ach() {
-            public AchResponse issueDebit(
-                    AchCredentials credentials, AchTransactionData data) {
-                assertTrue(
-                        data.account.equals(AccountTest.ACCOUNT_NUMBER));
-                assertTrue(data.aba.equals(AccountTest.ABA));
-                AchResponse response = new AchResponse();
-                response.timestamp = new Date();
-                response.traceCode = "1";
-                response.status = AchStatus.SUCCESS;
-                return response;
-            }
-            public AchResponse markTransactionAsNSF(
-                    AchCredentials credentials,
-                    AchTransactionData data,
-                    String traceCode) {
-                return null;
-            }
-            public AchResponse refundTransaction(AchCredentials credentials,AchTransactionData data,
-                                                 String traceCode) {
-                return null;
-            }
-            public AchResponse issueCredit(AchCredentials credentials,
-                                           AchTransactionData data) {
-                return null;
-            }
-            public AchResponse voidSameDayTransaction(
-                    AchCredentials credentials,
-                    AchTransactionData data,
-                    String traceCode) {
-                return null;
-            }
-            public AchResponse queryTransactionStatus (
-                    AchCredentials credentials,
-                    AchTransactionData data, String traceCode) {
-                return null;
-            }
-        };
+        Ach mockAch = createMockAch(AchStatus.SUCCESS);
         account.setAch(mockAch);
         final BigDecimal amount = new BigDecimal("50.00");
         account.transferFromBank(amount);
@@ -84,5 +48,19 @@ public class AccountTest {
         assertEquals(new BigDecimal("4.70"), account.transactionAverage());
     }
 
+    private Ach createMockAch(final AchStatus status) {
+        return new MockAch() {
+            public AchResponse issueDebit(
+                    AchCredentials credentials, AchTransactionData data) {
+                assertTrue(data.account.equals(AccountTest.ACCOUNT_NUMBER));
+                Assert.assertTrue(data.aba.equals(AccountTest.ABA));
+                AchResponse response = new AchResponse();
+                response.timestamp = new Date();
+                response.traceCode = "1";
+                response.status = status;
+                return response;
+            }
+        };
+    }
 }
 

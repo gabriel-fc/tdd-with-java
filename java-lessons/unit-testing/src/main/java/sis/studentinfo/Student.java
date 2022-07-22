@@ -55,7 +55,7 @@ public class Student implements Serializable {
                             " parts";
 
 
-            Student.logger.info(message);
+            //Student.logger.info(message);
             throw new StudentNameFormatException(message);
         }
         setName(nameParts);

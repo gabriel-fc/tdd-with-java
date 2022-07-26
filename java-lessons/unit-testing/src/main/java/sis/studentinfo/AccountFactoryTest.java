@@ -6,6 +6,9 @@ import java.lang.reflect.*;
 import org.junit.Before;
 import org.junit.Test;
 import sis.security.*;
+
+import static org.junit.Assert.*;
+
 public class AccountFactoryTest{
     private List<Method> updateMethods;
     private List<Method> readOnlyMethods;

@@ -18,7 +18,8 @@ import sis.util.IOUtilTest;
         ScorerTest.class, StudentLoggingTest.class, CourseTest.class,
         AccountTest.class, SerializationTest.class, CourseCatalogTest.class,
         DataFileTest.class, KeyFileTest.class, IOUtilTest.class,
-        SerializationTest.class, StudentDirectoryTest.class
+        SerializationTest.class, StudentDirectoryTest.class, AccountTest.class,
+        AccountFactoryTest.class
 
 })
 

@@ -5,8 +5,12 @@ import chess.pieces.types.NoPiece;
 import chess.util.StringUtil;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.stream.Collectors;
 
 public class Board implements Iterable<Piece[]>, Serializable{
     private Piece[][] board;

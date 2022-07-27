@@ -203,19 +203,19 @@ public class FileSystemExercises {
         ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
         DataOutputStream out = new DataOutputStream(byteArray);
         out.writeChar('c');
-        assertEquals(byteArray.size(), 2);
+        assertEquals(2, byteArray.size());
         byteArray.reset();
         out.writeLong(1);
-        assertEquals(byteArray.size(), 8);
+        assertEquals(8, byteArray.size());
         byteArray.reset();
         out.writeInt(1);
-        assertEquals(byteArray.size(), 4);
+        assertEquals(4, byteArray.size());
         byteArray.reset();
         out.writeDouble(1);
-        assertEquals(byteArray.size(), 8);
+        assertEquals(8, byteArray.size());
         byteArray.reset();
         out.writeFloat(1);
-        assertEquals(byteArray.size(), 4);
+        assertEquals(4, byteArray.size());
         byteArray.reset();
     }
 }

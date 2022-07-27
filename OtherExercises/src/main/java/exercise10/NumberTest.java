@@ -226,9 +226,9 @@ public class NumberTest {
     public void q22(){
         int x = Character.MAX_VALUE;
         char y = Character.MATH_SYMBOL;
-        assertEquals(Character.MIN_VALUE,(char)(Character.MAX_VALUE >> 16));
-        assertEquals((byte) 0,(byte) (Byte.MAX_VALUE >> 8));
-        assertEquals((short) 0, (short) (Short.MAX_VALUE >> 16));
+        assertEquals(Character.MIN_VALUE,(char)(Character.MAX_VALUE >>> 16));
+        assertEquals((byte) 0,(byte) (Byte.MAX_VALUE >>> 8));
+        assertEquals((short) 0, (short) (Short.MAX_VALUE >>> 16));
         assertEquals(0, Integer.MAX_VALUE >>> 31);
         assertEquals((long) 0, Long.MAX_VALUE >>> 63);
     }

@@ -5,27 +5,24 @@ import org.junit.Test;
 public class ObjectDumperTest {
     @Test
     public void testDump(){
-        ObjectDumper.dump(new A("abc", new B()));
+        System.out.println( ObjectDumper.dump(new A("abc", new B())));
     }
-
-
     private class A{
         private String a;
-        private B b;
+        public B b;
 
         private A(String a, B b){
             this.a = a;
             this.b = b;
         }
-
         public void aa(){}
 
         public B bb(){return b;}
     }
 
     private class B{
-        private int b = 5;
-        private Double c = 5.5;
+        public int b = 5;
+        public Double c = 5.5;
 
         public Double getC() {
             return c;
@@ -35,6 +32,4 @@ public class ObjectDumperTest {
             return b;
         }
     }
-
-
 }

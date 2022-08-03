@@ -16,8 +16,7 @@ public class SearchTest {
             "Book: Agile Java, by Jeff Langr<br />",
             "Synopsis: Mr Langr teaches you<br />",
             "Java via test-driven development.<br />",
-            "</body></html>"
-    };
+            "</body></html>"};
     public static final String FILE = "/temp/testFileSearch.html";
     public static final String URL = "file:" + FILE;
 

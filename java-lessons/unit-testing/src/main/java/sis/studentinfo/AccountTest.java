@@ -14,6 +14,7 @@ public class AccountTest {
     static final String ABA = "102000012";
     static final String ACCOUNT_NUMBER = "194431518811";
     private Account account;
+
     @Before
     public void setUp() {
         account = new Account();
@@ -21,6 +22,7 @@ public class AccountTest {
         account.setBankAccountNumber(ACCOUNT_NUMBER);
         account.setBankAccountType(Account.BankAccountType.CHECKING);
     }
+
     @Test
     public void testTransferFromBank() {
         Ach mockAch = createMockAch(AchStatus.SUCCESS);
@@ -29,6 +31,7 @@ public class AccountTest {
         account.transferFromBank(amount);
         assertEquals(amount, account.getBalance());
     }
+
     @Test
     public void testTransactions() {
         Account account = new Account();
@@ -39,6 +42,7 @@ public class AccountTest {
                 new BigDecimal("5.000").add(new BigDecimal("0.3")));
         assertNotEquals(new BigDecimal("11.1"), account.getBalance());
     }
+
     @Test
     public void testTransactionAverage() {
         Account account = new Account();
@@ -61,6 +65,19 @@ public class AccountTest {
                 return response;
             }
         };
+    }
+
+    @Test
+    public void testWithdraw() throws Exception {
+        account.credit(new BigDecimal("100.00"));
+        account.withdraw(new BigDecimal("40.00"));
+        assertEquals(new BigDecimal("60.00"), account.getBalance());
+    }
+    @Test
+    public void testWithdrawInsufficientFunds() {
+        account.credit(new BigDecimal("100.00"));
+        account.withdraw(new BigDecimal("140.00"));
+        assertEquals(new BigDecimal("100.00"), account.getBalance());
     }
 }
 

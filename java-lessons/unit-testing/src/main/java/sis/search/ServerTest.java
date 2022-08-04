@@ -6,6 +6,7 @@ import org.junit.Test;
 import sis.util.LineWriter;
 import sis.util.TestUtil;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class ServerTest {
@@ -28,7 +29,10 @@ public class ServerTest {
 
     @After
     public void tearDown() throws Exception {
-        TestUtil.delete(SearchTest.FILE);
+        assertTrue(server.isAlive());
+        server.shutDown();
+        server.join(3000);
+        assertFalse(server.isAlive());
     }
 
     @Test

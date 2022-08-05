@@ -6,7 +6,7 @@ import chess.util.StringUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Piece implements Serializable {
+public abstract class Piece implements Serializable {
 
     private final Color color;
     private final char representation;
@@ -90,9 +90,7 @@ public class Piece implements Serializable {
         return new NoPiece();
     }
 
-    public ArrayList<String> getPossibleMoves(String position){
-        return new ArrayList<>();
-    }
+    public abstract ArrayList<String> getPossibleMoves(String position);
 
     public void setPosition(int rank, int file){
         this.rank = rank;

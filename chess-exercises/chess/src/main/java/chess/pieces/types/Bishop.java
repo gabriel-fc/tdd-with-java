@@ -15,15 +15,14 @@ public class Bishop extends Piece {
         return 3.0;
     }
 
-//    @Override
-//    public ArrayList<String> getPossibleMoves(String position) {
-//        ArrayList<String> possibleMoves = new ArrayList<>();
-//        possibleMoves.add(diagonalLeftAndForward(position));
-//
-//    }
 
     private String diagonalLeftAndForward(String position){
         return new Movements.Forward().move(new
                 Movements.LeftForward().move(position, super.getColor()), super.getColor());
+    }
+
+    @Override
+    public ArrayList<String> getPossibleMoves(String position) {
+        return null;
     }
 }

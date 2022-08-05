@@ -9,15 +9,25 @@ import java.util.ArrayList;
 
 public class Movements implements Serializable {
 
-
-    public String moveOneSquareInDirection(String currentPosition, Piece.Color color,
-                                           MoveStrategy direction, ArrayList<String> possibleMoves){
-        String nextPosition = direction.move(currentPosition, color);
-        if (Board.isValidPosition(nextPosition)){
-            possibleMoves.add(nextPosition);
-            return nextPosition;
+    private static String ifIsValidAppend(String position, ArrayList<String> possibleMoves){
+        if (Board.isValidPosition(position)){
+            possibleMoves.add(position);
+            return position;
         }
         return null;
+    }
+
+    public static String moveOneSquareInDirection(String currentPosition, Piece.Color color,
+                                           MoveStrategy direction, ArrayList<String> possibleMoves){
+        return ifIsValidAppend(direction.move(currentPosition, color), possibleMoves);
+    }
+
+    public static String moveInL(String currentPosition, Piece.Color color,
+                                 MoveStrategy primaryDirection, MoveStrategy secondaryDirection,
+                                 ArrayList<String> possibleMoves){
+        return ifIsValidAppend(secondaryDirection.move(primaryDirection.
+                move(currentPosition, color), color),
+                possibleMoves);
     }
 
 
@@ -30,7 +40,7 @@ public class Movements implements Serializable {
         return StringUtil.setPosition(file + fileMove, rank + rankMove);
     }
 
-    public ArrayList<String> moveInDirection(String currentPosition, Piece.Color color,
+    public static ArrayList<String> moveInDirection(String currentPosition, Piece.Color color,
                                              MoveStrategy direction, ArrayList<String> possibleMoves){
 
         String nextPosition = moveOneSquareInDirection(currentPosition, color, direction, possibleMoves);
@@ -97,6 +107,4 @@ public class Movements implements Serializable {
     public interface MoveStrategy {
         public String move(String currentPosition, Piece.Color color);
     }
-
-
 }

@@ -4,6 +4,7 @@ import chess.pieces.Piece;
 import chess.pieces.types.movementstrategy.Movements;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Bishop extends Piece {
     public Bishop(Color color){
@@ -23,6 +24,16 @@ public class Bishop extends Piece {
 
     @Override
     public ArrayList<String> getPossibleMoves(String position) {
-        return null;
+        ArrayList<String> possibleMoves = new ArrayList<>();
+        Movements.moveInDirection(position, super.getColor(),
+                new Movements.LeftForward(), possibleMoves);
+        Movements.moveInDirection(position, super.getColor(),
+                new Movements.RightForward(), possibleMoves);
+        Movements.moveInDirection(position, super.getColor(),
+                new Movements.LeftBackward(), possibleMoves);
+        Movements.moveInDirection(position, super.getColor(),
+                new Movements.RightBackward(), possibleMoves);
+        Collections.sort(possibleMoves);
+        return possibleMoves;
     }
 }

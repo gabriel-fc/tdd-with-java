@@ -1,6 +1,9 @@
 package chess.pieces.types;
 
+import chess.game.Game;
 import chess.pieces.Piece;
+import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -47,5 +50,33 @@ public class TypeTest {
 
     @Test
     public void getBishopPossibleMovesTest(){}
+
+    private Game game;
+
+    @Before
+    public void setup(){
+        game = new Game();
+        game.start();
+    }
+
+    @Test
+    public void testBishopPossibleMoves(){
+        Bishop bishop = (Bishop) Piece.createWhiteBishop();
+        verify("[a1, a7, b2, b6, c3, " +
+                "c5, e3, e5, f2, f6, g1, g7, h8]", bishop.getPossibleMoves("d4").toString());
+    }
+
+    @Test
+    public void testKnightPossibleMoves() {
+        Knight knight = (Knight) Piece.createWhiteKnight();
+        verify("[b3, b5, c2, c6, e2, e6, f3, f5]",
+                knight.getPossibleMoves("d4").toString());
+    }
+
+
+
+    public void verify(String expected, String actual){
+        TestCase.assertEquals(expected, actual);
+    }
 
 }

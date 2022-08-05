@@ -18,35 +18,32 @@ public class King extends Piece {
     @Override
     public ArrayList<String> getPossibleMoves(String position) {
         ArrayList<String> possibleMoves = new ArrayList();
-        super.movements.moveOneSquareInDirection(position, super.getColor(),
+        Movements.moveOneSquareInDirection(position, super.getColor(),
                 new Movements.Forward(), possibleMoves);
 
-        super.movements.moveOneSquareInDirection(position, super.getColor(),
+        Movements.moveOneSquareInDirection(position, super.getColor(),
                 new Movements.Backward(),possibleMoves);
 
-        super.movements.moveOneSquareInDirection(position, super.getColor(),
+        Movements.moveOneSquareInDirection(position, super.getColor(),
                 new Movements.Right(), possibleMoves);
 
-        super.movements.moveOneSquareInDirection(position, super.getColor(),
+        Movements.moveOneSquareInDirection(position, super.getColor(),
                 new Movements.Left(), possibleMoves);
 
-        super.movements.moveOneSquareInDirection(position, super.getColor(),
+        Movements.moveOneSquareInDirection(position, super.getColor(),
                 new Movements.RightForward(), possibleMoves);
 
-        super.movements.moveOneSquareInDirection(position, super.getColor(),
+        Movements.moveOneSquareInDirection(position, super.getColor(),
                 new Movements.LeftForward(), possibleMoves);
 
-        super.movements.moveOneSquareInDirection(position, super.getColor(),
+        Movements.moveOneSquareInDirection(position, super.getColor(),
                 new Movements.RightBackward(), possibleMoves);
 
-        super.movements.moveOneSquareInDirection(position, super.getColor(),
+        Movements.moveOneSquareInDirection(position, super.getColor(),
                 new Movements.LeftBackward(), possibleMoves);
 
         Collections.sort(possibleMoves);
         return possibleMoves;
     }
-
-
-
 
 }

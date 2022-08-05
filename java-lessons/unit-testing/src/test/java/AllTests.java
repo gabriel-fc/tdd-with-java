@@ -6,6 +6,9 @@ import sis.courseinfo.DateUtilTest;
 import sis.db.DataFileTest;
 import sis.db.KeyFileTest;
 import sis.report.RosterReporterTest;
+import sis.search.SearchTest;
+import sis.search.ServerTest;
+import sis.security.SecureProxyTest;
 import sis.studentinfo.*;
 import sis.courseinfo.summer.TestSummerCourseSession;
 import sis.util.IOUtilTest;
@@ -19,8 +22,8 @@ import sis.util.IOUtilTest;
         AccountTest.class, SerializationTest.class, CourseCatalogTest.class,
         DataFileTest.class, KeyFileTest.class, IOUtilTest.class,
         SerializationTest.class, StudentDirectoryTest.class, AccountTest.class,
-        AccountFactoryTest.class
-
+        AccountFactoryTest.class, SearchTest.class, ServerTest.class, SecureProxyTest.class,
+        MultithreadedAccountTest.class, StudentLoggingTest.class
 })
 
 public class AllTests {}

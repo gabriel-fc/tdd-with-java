@@ -17,7 +17,7 @@ public class SearchTest {
             "Synopsis: Mr Langr teaches you<br />",
             "Java via test-driven development.<br />",
             "</body></html>"};
-    public static final String FILE = "testFileSearch.html";
+    public static final String FILE = "/tmp/testFileSearch.html";
     public static final String URL = "file:" + FILE;
 
     @Before

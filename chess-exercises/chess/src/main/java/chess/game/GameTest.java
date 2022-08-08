@@ -1,18 +1,23 @@
 package chess.game;
 
 import chess.pieces.Piece;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class GameTest {
+    private Game game;
 
+    @Before
+    public void setUp(){
+        game = new Game();
+        game.start();
+    }
 
     @Test
     public void testIsValidMovement(){
-        Game game = new Game();
-        game.start();
+
         Piece blackKing = Piece.createBlackKing();
         Piece whiteKing = Piece.createWhiteKing();
 
@@ -36,9 +41,12 @@ public class GameTest {
         //move black to black
         assertFalse(game.isValidMovement("a7", blackKing));
 
+    }
 
-
-
-
+    @Test
+    public void testIsPieceAnEnemy(){
+        assertFalse(game.isPieceAnEnemy(Piece.Color.BLACK, Piece.Color.BLACK));
+        assertTrue(game.isPieceAnEnemy(Piece.Color.WHITE, Piece.Color.BLACK));
+        assertFalse(game.isPieceAnEnemy(Piece.Color.WHITE, Piece.Color.WHITE));
     }
 }

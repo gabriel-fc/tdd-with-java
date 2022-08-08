@@ -26,7 +26,7 @@ public class TypeTest {
     }
 
     @Test
-    public void getKingPossibleMovesTest(){
+    public void testKingPossibleMoves(){
         King king = new King(Piece.Color.WHITE);
         assertEquals("[a3, a4, a5, b3, b5, c3, c4, c5]",
                 king.getPossibleMoves("b4").toString());
@@ -37,7 +37,7 @@ public class TypeTest {
     }
 
     @Test
-    public void getQueenPossibleMovesTest(){
+    public void testQueenPossibleMoves(){
         Piece whiteQueen = new Queen(Piece.Color.WHITE);
         Piece blackQueen = new Queen(Piece.Color.BLACK);
         assertEquals("[a3, a6, b1, b3, b5, c2, c3, c4, d1, d2, " +
@@ -48,16 +48,6 @@ public class TypeTest {
                 blackQueen.getPossibleMoves("a3").toString());
     }
 
-    @Test
-    public void getBishopPossibleMovesTest(){}
-
-    private Game game;
-
-    @Before
-    public void setup(){
-        game = new Game();
-        game.start();
-    }
 
     @Test
     public void testBishopPossibleMoves(){
@@ -72,6 +62,19 @@ public class TypeTest {
         verify("[b3, b5, c2, c6, e2, e6, f3, f5]",
                 knight.getPossibleMoves("d4").toString());
     }
+
+    @Test
+    public void testPawnPossibleMoves(){
+        Pawn pawn = (Pawn) Piece.createBlackPawn();
+        verify("[d3]", pawn.getPossibleMoves("d4").toString());
+    }
+
+    @Test
+    public void testRookPossibleMoves(){
+    Rook rook = (Rook) Piece.createBlackRook();
+    verify("[a1, a3, a4, a5, a6, a7, a8, b2, c2, d2, e2, f2, g2, h2]", rook.getPossibleMoves("a2").toString());
+    }
+
 
 
 

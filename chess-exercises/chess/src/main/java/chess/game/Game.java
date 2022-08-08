@@ -11,10 +11,13 @@ public class Game {
         board.initialize();
     }
 
-    public boolean isValidMovement(String position, Piece piece){
+    public boolean isValidMovement(String position, Piece piece) {
         return Board.isValidPosition(position) &&
                 (board.isPositionEmpty(position) || piece.isOpponent(board.getPiece(position)));
     }
 
+    public boolean isPieceAnEnemy(Piece.Color current, Piece.Color other){
+        return current != other;
+    }
 
 }

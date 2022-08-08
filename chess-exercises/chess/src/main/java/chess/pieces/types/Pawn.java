@@ -1,9 +1,11 @@
 package chess.pieces.types;
 
 import chess.pieces.Piece;
+import chess.pieces.types.movementstrategy.Movements;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Pawn extends Piece  {
 
@@ -18,6 +20,10 @@ public class Pawn extends Piece  {
 
     @Override
     public ArrayList<String> getPossibleMoves(String position) {
-        return null;
+        ArrayList<String> possibleMoves = new ArrayList();
+        Movements.moveOneSquareInDirection(position, super.getColor(),
+                new Movements.Forward(), possibleMoves);
+        Collections.sort(possibleMoves);
+        return possibleMoves;
     }
 }

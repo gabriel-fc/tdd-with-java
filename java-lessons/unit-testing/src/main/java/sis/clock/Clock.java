@@ -12,6 +12,7 @@ public class Clock implements Runnable {
         run = false;
     }
     public void run() {
+        Thread.currentThread().setPriority(Thread.NORM_PRIORITY - 1);
         long lastTime = System.currentTimeMillis();
         while (run) {
             try {

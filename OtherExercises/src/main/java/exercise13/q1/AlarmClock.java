@@ -4,9 +4,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class AlarmClock{
 
-    private boolean isTime = false;
+    private volatile boolean isTime = false;
 
-    protected AlarmClock(String message, int time, LinkedBlockingQueue<String> queue){
+    public AlarmClock(String message, int time, LinkedBlockingQueue<String> queue){
 
         new Thread(new Runnable() {
             @Override

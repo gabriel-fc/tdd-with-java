@@ -13,9 +13,13 @@ public class AlarmClockTest {
         int time = 5000;
         LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<>();
         AlarmClock alarm = new AlarmClock(msg, time, queue);
-        assertFalse(alarm.isTime());
+        long start = System.currentTimeMillis();
         try {
-            Thread.sleep(5010);
+            while(System.currentTimeMillis() < start + time){
+                assertFalse(alarm.isTime());
+                assertTrue(queue.isEmpty());
+            }
+            Thread.sleep(5);
             assertTrue(alarm.isTime());
             assertEquals(msg, queue.take());
         }catch (InterruptedException e){}

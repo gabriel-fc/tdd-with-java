@@ -1,5 +1,6 @@
 package exercise13.q1;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.concurrent.LinkedBlockingQueue;
@@ -7,12 +8,22 @@ import java.util.concurrent.LinkedBlockingQueue;
 import static org.junit.Assert.*;
 
 public class AlarmClockTest {
+    private String msg;
+    private int time;
+    private Object monitor;
+    private LinkedBlockingQueue queue;
+    AlarmClock alarm;
+    @Before
+    public void setUp(){
+        msg = "this alarm should've rang 5 seconds after being set";
+        time = 5000;
+        monitor = new Object();
+        queue = new LinkedBlockingQueue<>();
+        alarm = new AlarmClock(msg, time, queue, monitor);
+    }
+
     @Test
     public void alarmClockTest(){
-        String msg = "this alarm should've rang 5 seconds after being set";
-        int time = 5000;
-        LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<>();
-        AlarmClock alarm = new AlarmClock(msg, time, queue);
         long start = System.currentTimeMillis();
         try {
             while(System.currentTimeMillis() < start + time){
@@ -22,7 +33,13 @@ public class AlarmClockTest {
             Thread.sleep(5);
             assertTrue(alarm.isTime());
             assertEquals(msg, queue.take());
+
         }catch (InterruptedException e){}
+
+    }
+
+    @Test
+    public void alarmClockTestForQ2(){
 
     }
 }

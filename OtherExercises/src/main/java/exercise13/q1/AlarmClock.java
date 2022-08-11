@@ -6,7 +6,7 @@ public class AlarmClock{
 
     private volatile boolean isTime = false;
 
-    public AlarmClock(String message, int time, LinkedBlockingQueue<String> queue){
+    public AlarmClock(String message, int time, LinkedBlockingQueue<String> queue, Object monitor){
 
         new Thread(new Runnable() {
             @Override
@@ -15,7 +15,6 @@ public class AlarmClock{
                     Thread.sleep(time);
                     queue.put(message);
                     isTime = true;
-
 
                 }catch (InterruptedException e){}
 

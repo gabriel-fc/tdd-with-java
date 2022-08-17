@@ -12,6 +12,7 @@ public class AlarmClockTest {
     private int time;
     private Object monitor;
     private LinkedBlockingQueue queue;
+
     AlarmClock alarm;
     @Before
     public void setUp(){
@@ -19,20 +20,18 @@ public class AlarmClockTest {
         time = 5000;
         monitor = new Object();
         queue = new LinkedBlockingQueue<>();
-        alarm = new AlarmClock(msg, time, queue, monitor);
     }
 
     @Test
     public void alarmClockTest(){
+        alarm = new AlarmClock(msg, time, queue);
         long start = System.currentTimeMillis();
         try {
             while(System.currentTimeMillis() < start + time){
-                assertFalse(alarm.isTime());
-                assertTrue(queue.isEmpty());
+                verifyBeforeEndOfThread();
             }
-            Thread.sleep(5);
-            assertTrue(alarm.isTime());
-            assertEquals(msg, queue.take());
+            Thread.sleep(50);
+            verifyAfterEndOfThread(start+50);
 
         }catch (InterruptedException e){}
 
@@ -40,6 +39,31 @@ public class AlarmClockTest {
 
     @Test
     public void alarmClockTestForQ2(){
+        alarm = new AlarmClock(msg, time, queue, monitor);
+        long start= System.currentTimeMillis();
+        try{
+            synchronized (monitor){
+                verifyBeforeEndOfThread();
+                monitor.wait();
+                verifyAfterEndOfThread(start);
+
+            }
+
+        }catch(InterruptedException e){}
+    }
+
+
+    private void verifyBeforeEndOfThread(){
+        assertFalse(alarm.isTime());
+        assertTrue(queue.isEmpty());
+    }
+
+    private void verifyAfterEndOfThread(long start){
+        try{
+            assertEquals(time, System.currentTimeMillis() - start);
+            assertTrue(alarm.isTime());
+            assertEquals(msg, queue.take());
+        }catch (InterruptedException e){}
 
     }
 }

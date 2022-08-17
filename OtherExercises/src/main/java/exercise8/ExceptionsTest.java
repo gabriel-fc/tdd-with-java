@@ -1,5 +1,6 @@
 package exercise8;
 
+import org.junit.Before;
 import org.junit.Test;
 import util.StringUtil;
 
@@ -66,12 +67,13 @@ public class ExceptionsTest {
 
 
     @Test
-    public void testFormatterWithCountingHandler(){
-        Logger logger = Logger.getLogger(Exceptions.class.getName());
+    public void testFormatterWithCountingHandler()throws NoSuchMethodException{
+        Logger logger = Logger.getLogger(ExceptionsTest.class.
+                getMethod("testFormatterWithCountingHandler").getName());
         CustomHandler handler = new CustomHandler();
-        Formatter logFormatter = new LogFormatter(handler);
-        handler.setFormatter(logFormatter);
+        handler.setFormatter(new LogFormatter(handler));
         logger.addHandler(handler);
+
         testExceptionMessage(Level.SEVERE, logger,
                 "watch out (SEVERE total = 1)" + StringUtil.NEWLINE);
         testExceptionMessage(Level.SEVERE, logger,
@@ -87,11 +89,11 @@ public class ExceptionsTest {
     }
 
     @Test
-    public void testFormatterWithoutCountingHandler(){
-        Logger logger = Logger.getLogger(Exceptions.class.getName());
+    public void testFormatterWithoutCountingHandler() throws NoSuchMethodException{
+        Logger logger = Logger.getLogger(ExceptionsTest.class.
+                getMethod("testFormatterWithoutCountingHandler").getName());
         CustomHandler handler = new CustomHandler();
-        Formatter logFormatter = new LogFormatter();
-        handler.setFormatter(logFormatter);
+        handler.setFormatter(new LogFormatter());
         logger.addHandler(handler);
         testExceptionMessage(Level.SEVERE, logger,
                 "watch out" + StringUtil.NEWLINE);

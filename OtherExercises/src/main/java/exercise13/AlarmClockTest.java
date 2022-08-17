@@ -1,5 +1,6 @@
-package exercise13.q1;
+package exercise13;
 
+import exercise13.AlarmClock;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,7 +34,7 @@ public class AlarmClockTest {
             Thread.sleep(50);
             verifyAfterEndOfThread(start+50);
 
-        }catch (InterruptedException e){}
+        }catch (InterruptedException ignored){}
 
     }
 

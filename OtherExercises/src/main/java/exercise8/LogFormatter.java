@@ -19,8 +19,9 @@ public class LogFormatter extends Formatter {
         String msg =  record.getMessage();
         if (countingLogHandler == null){
             msg += StringUtil.NEWLINE;
-            return msg.toString();
+            return msg;
         }
+
         msg += " " + "(" + record.getLevel() + " total = " +
                 countingLogHandler.getCount(record.getLevel()) + ")" + StringUtil.NEWLINE;
         return msg;

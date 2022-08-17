@@ -1,11 +1,10 @@
-package exercise13.q1;
+package exercise13;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class AlarmClock{
 
     private volatile boolean isTime = false;
-
     public AlarmClock(String message, int time, LinkedBlockingQueue<String> queue){
 
         new Thread(new Runnable() {

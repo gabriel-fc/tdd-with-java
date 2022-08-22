@@ -1,29 +1,29 @@
 package exercise13.q3;
 
+import java.util.concurrent.BlockingQueue;
+
 public class Alarm {
-    private String message = null;
-    public Alarm(long time, String message, Object monitor){
+    BlockingQueue<String> queue;
+    public Alarm(long time, String message, BlockingQueue<String> queue){
+        this.queue = queue;
         new Thread(
                 new Runnable() {
                     @Override
                     public void run() {
-                        synchronized (monitor){
-                            try{
-                                monitor.wait(time);
+                        try{
+                            synchronized (this) {
+                                this.wait(time);
                                 setMessage(message);
-                                monitor.notify();
-                            }catch (InterruptedException ignored){}
-                        }
+                            }
+                        }catch (InterruptedException ignored){}
                     }
                 }
         ).start();
     }
 
     private void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getMessage(){
-        return message;
+        try{
+            queue.put(message);
+        }catch (InterruptedException ignored){}
     }
 }

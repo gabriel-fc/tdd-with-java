@@ -39,5 +39,6 @@ public class AlarmClockTest {
         assertTrue(alarmClock.removeAlarm("alarm"));
         Thread.sleep(1000);
         assertEquals(null, alarmClock.getMessage());
+        
     }
 }

@@ -4,14 +4,12 @@ public class Ring <T>{
     private RingElement current = null;
     private int count = 0;
     public void add(T element){
-        RingElement newElement = new RingElement(element);
+        RingElement newElement;
         if(current == null){
-            newElement.previous = newElement;
-            newElement.next = newElement;
-            current = newElement;
+            newElement = new RingElement(element);
+            this.current = newElement;
         }else{
-            newElement.previous = current;
-            newElement.next = current.next;
+            newElement = new RingElement(element, current, current.next);
             current.next.previous = newElement;
             current.next = newElement;
         }
@@ -61,10 +59,16 @@ public class Ring <T>{
         private RingElement next;
         private T self;
 
-        private RingElement (T self){
+        private RingElement (T self, RingElement previous, RingElement next){
             this.self = self;
-            this.previous = null;
-            this.next = null;
+            this.previous = previous;
+            this.next = next;
+        }
+
+        private RingElement(T self){
+            this.self = self;
+            this.previous = this;
+            this.next = this;
         }
 
     }

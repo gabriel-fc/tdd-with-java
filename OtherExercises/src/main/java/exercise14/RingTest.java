@@ -8,7 +8,7 @@ import static org.junit.Assert.fail;
 
 public class RingTest  {
     private Ring<String> ring;
-
+    private String failMessage = "should've thrown exception";
     @Before
     public void setUp(){
         ring = new Ring<>();
@@ -28,6 +28,14 @@ public class RingTest  {
 
     @Test
     public void testRemove(){
+
+        try {
+            ring.remove();
+            fail(failMessage);
+        }catch (RuntimeException e){
+
+        }
+
         ring.add("item 1");
         ring.remove();
         assertEquals(0, ring.size());
@@ -47,7 +55,7 @@ public class RingTest  {
     public void testGetNext(){
         try{
             ring.getNext();
-            fail("should've thrown exception");
+            fail(failMessage);
         }catch (RuntimeException e){
             assertEquals(new InvalidOperationOverEmptyRingException().getMessage(), e.getMessage());
         }
@@ -62,7 +70,7 @@ public class RingTest  {
     public void testGetPrevious(){
         try{
             ring.getPrevious();
-            fail("should've thrown exception");
+            fail(failMessage);
         }catch (RuntimeException e){
             assertEquals(new InvalidOperationOverEmptyRingException().getMessage(), e.getMessage());
         }
@@ -84,10 +92,23 @@ public class RingTest  {
         assertEquals("element 2", ring.getCurrent());
     }
 
+    @Test
+    public void testIterable(){
+        Ring<Integer> integerRing = new Ring<>();
+        int expectedValue = 0;
+        for (int i = 0; i < 10; i++) {
+            integerRing.add(i);
+            integerRing.getNext();
+        }
+        for (int value: integerRing) {
+            assertEquals(expectedValue++, value);
+        }
+    }
+
     private void tryGetCurrentOverEmptyRing(){
         try{
             ring.getCurrent();
-            fail("should've thrown exception");
+            fail(failMessage);
         }catch (RuntimeException e){
             assertEquals(new InvalidOperationOverEmptyRingException().getMessage(), e.getMessage());
         }

@@ -1,6 +1,8 @@
 package exercise14;
 
-public class Ring <T>{
+import java.util.Iterator;
+
+public class Ring <T> implements Iterable<T>{
     private RingElement current = null;
     private int count = 0;
     public void add(T element){
@@ -17,7 +19,12 @@ public class Ring <T>{
     }
 
     public void remove(){
-        if(size() == 1) current = null;
+        if(current == null) throw new InvalidOperationOverEmptyRingException();
+        if(size() == 1) {
+            current.previous = null;
+            current.next = null;
+            current = null;
+        }
         else {
             current.previous.next = current.next;
             current.next.previous = current.previous;
@@ -52,6 +59,24 @@ public class Ring <T>{
     public T getCurrent(){
         if(current == null) throw new InvalidOperationOverEmptyRingException();
         return this.current.self;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        if(current == null) throw new InvalidOperationOverEmptyRingException();
+        return new Iterator<T>() {
+            private RingElement startingElement = current;
+            @Override
+            public boolean hasNext() {
+
+                return startingElement != current.next;
+            }
+
+            @Override
+            public T next() {
+                return getNext();
+            }
+        };
     }
 
     private class RingElement {

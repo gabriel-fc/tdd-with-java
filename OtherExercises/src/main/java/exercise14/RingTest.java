@@ -100,7 +100,9 @@ public class RingTest  {
             integerRing.add(i);
             integerRing.getNext();
         }
+        integerRing.getNext();
         for (int value: integerRing) {
+            System.out.println(value);
             assertEquals(expectedValue++, value);
         }
     }

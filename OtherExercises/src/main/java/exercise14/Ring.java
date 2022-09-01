@@ -65,11 +65,13 @@ public class Ring <T> implements Iterable<T>{
     public Iterator<T> iterator() {
         if(current == null) throw new InvalidOperationOverEmptyRingException();
         return new Iterator<T>() {
-            private RingElement startingElement = current;
+            {
+                current = current.previous;
+            }
+            private int returnedValues = 0;
             @Override
             public boolean hasNext() {
-
-                return startingElement != current.next;
+                return returnedValues++ < count;
             }
 
             @Override

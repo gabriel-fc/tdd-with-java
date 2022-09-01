@@ -1,7 +1,7 @@
 import exercise12.Q3Test;
 import exercise12.Q4Test;
-import exercise13.AlarmClock;
 import exercise13.AlarmClockTest;
+import exercise14.RingTest;
 import exercise7.LoopTest;
 import exercise8.ExceptionsTest;
 import exercise11.FileSystemExercises;
@@ -16,7 +16,7 @@ import exercise9.ExerciseWithStringTest;
         ExceptionsTest.class, LoopTest.class,
         NumberTest.class, ExerciseWithStringTest.class,
         FileSystemExercises.class, Q3Test.class, Q4Test.class,
-        AlarmClockTest.class
+        AlarmClockTest.class, RingTest.class
 })
 
 public class OtherExercisesSuites {

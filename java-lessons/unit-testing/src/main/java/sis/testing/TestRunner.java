@@ -4,7 +4,10 @@ import java.lang.reflect.*;
 class TestRunner {
     private Class testClass;
     private int failed = 0;
+    private Map<Method, Ignore> ignoredMethods = null;
     private Set<Method> testMethods = null;
+    public static final String DEFAULT_IGNORE_REASON =
+            "temporarily commenting out";
     public static void main(String[] args) throws Exception {
         TestRunner runner = new TestRunner(args[0]);
         runner.run();
@@ -22,13 +25,26 @@ class TestRunner {
     public Set<Method> getTestMethods() {
         if (testMethods == null)
             loadTestMethods();
+
         return testMethods;
     }
     private void loadTestMethods() {
         testMethods = new HashSet<Method>();
-        for (Method method: testClass.getDeclaredMethods())
-            testMethods.add(method);
+        ignoredMethods = new HashMap<Method, Ignore>();
+        for (Method method : testClass.getDeclaredMethods()) {
+            if (method.isAnnotationPresent(TestMethod.class))
+                if (method.isAnnotationPresent(Ignore.class)) {
+                    Ignore ignore = method.getAnnotation(Ignore.class);
+                    ignoredMethods.put(method, ignore);
+                } else
+                    testMethods.add(method);
+        }
     }
+
+    public Map<Method, Ignore> getIgnoredMethods() {
+        return ignoredMethods;
+    }
+
     public void run() {
         for (Method method: getTestMethods())
             run(method);
@@ -36,6 +52,7 @@ class TestRunner {
     private void run(Method method) {
         try {
             Object testObject = testClass.getDeclaredConstructor().newInstance();
+            method.setAccessible(true);
             method.invoke(testObject, new Object[] {});
         }
         catch (InvocationTargetException e) {

@@ -5,4 +5,5 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Dump {
+    int order () default Integer.MAX_VALUE;
 }

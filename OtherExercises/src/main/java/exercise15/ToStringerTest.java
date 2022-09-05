@@ -3,6 +3,8 @@ package exercise15;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 public class ToStringerTest {
@@ -10,11 +12,13 @@ public class ToStringerTest {
     @Before
     public void setUp()throws NoSuchFieldException, NoSuchMethodException{
         expected = new StringBuilder();
+        expected.append(ClassForTest.class.getField("d").getName());
+        expected.append('\n');
+        expected.append(ClassForTest.class.getField("b").getName());
+        expected.append('\n');
+        expected.append(ClassForTest.class.getField("c").getName());
+        expected.append('\n');
         expected.append(ClassForTest.class.getField("a").getName());
-        expected.append(ClassForTest.class.getMethod("b").getName());
-        expected.append(ClassForTest.class.getMethod("c").getName());
-        expected.append(ClassForTest.class.getMethod("d").getName());
-        
     }
 
     @Test
@@ -27,16 +31,15 @@ public class ToStringerTest {
         @Dump
         public boolean a;
         public double x;
+        @Dump(order = 2)
+        public String b;
+        @Dump(order = 100)
+        public int c;
 
-        @Dump
-        public String b(){return null;}
-        @Dump
-        public int c(){return 0;}
+        @Dump(order = 1)
+        public Date d;
 
-        @Dump
-        public void d(){}
-
-        public float y(){return 0.1f;}
+        public float y;
 
     }
 

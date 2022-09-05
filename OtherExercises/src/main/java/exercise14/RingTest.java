@@ -24,6 +24,12 @@ public class RingTest  {
         assertEquals("item 1", ring.getCurrent());
         assertEquals("item 3", ring.getNext());
         assertEquals("item 2", ring.getNext());
+        try {
+            ring.add(null);
+            fail(failMessage);
+        }catch (AssertionError e){
+            assertEquals("ring doesn't accept null arguments", e.getMessage());
+        }
     }
 
     @Test

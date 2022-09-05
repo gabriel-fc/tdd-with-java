@@ -6,6 +6,7 @@ public class Ring <T> implements Iterable<T>{
     private RingElement current = null;
     private int count = 0;
     public void add(T element){
+        assert element != null : "ring doesn't accept null arguments";
         RingElement newElement;
         if(current == null){
             newElement = new RingElement(element);

@@ -27,6 +27,7 @@ public class ToStringerTest {
     }
 
 
+
     private class ClassForTest{
         @Dump
         public boolean a;
@@ -36,7 +37,7 @@ public class ToStringerTest {
         @Dump(order = 100)
         public int c;
 
-        @Dump(order = 1)
+        @Dump(order = 1, quote = true)
         public Date d;
 
         public float y;

@@ -21,11 +21,13 @@ public class ToStringer {
     private static ArrayList<ObjectWrapper> toListOfWrappers(Field[] fields){
         ArrayList<ObjectWrapper> list = new ArrayList<>();
         for (Field field: fields) {
-            if(field.isAnnotationPresent(Dump.class))  list.add(new ObjectWrapper(field));
+            if(field.isAnnotationPresent(Dump.class)){
+                list.add(new ObjectWrapper(field));
+            }
+
         }
         return list;
     }
-
     private static class ObjectWrapper implements Comparable<ObjectWrapper>{
         Field field;
         int order;

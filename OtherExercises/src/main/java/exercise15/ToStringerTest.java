@@ -12,7 +12,7 @@ public class ToStringerTest {
     @Before
     public void setUp()throws NoSuchFieldException, NoSuchMethodException{
         expected = new StringBuilder();
-        expected.append(ClassForTest.class.getField("d").getName());
+        expected.append('"' + ClassForTest.class.getField("d").getName() + '"');
         expected.append('\n');
         expected.append(ClassForTest.class.getField("b").getName());
         expected.append('\n');

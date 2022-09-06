@@ -12,7 +12,10 @@ public class ToStringerTest {
     @Before
     public void setUp()throws NoSuchFieldException{
         expected = new StringBuilder();
-        expected.append('"' + ClassForTest.class.getField("d").getName() + '"');
+        expected.append('"' +
+                ClassForTest.class.getField("d").toString() +
+                " | " + ClassForTest.class.getField("d").getName()
+                  + '"');
         expected.append('\n');
         expected.append(ClassForTest.class.getField("b"));
         expected.append('\n');
@@ -37,9 +40,8 @@ public class ToStringerTest {
         @Dump(order = 100)
         public int c;
 
-        @Dump(order = 1, quote = true, outputMethod = "getName")
+        @Dump(order = 1, quote = true, outputMethods = {"toString","getName"})
         public Date d;
-
         public float y;
 
     }

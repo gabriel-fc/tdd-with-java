@@ -13,7 +13,7 @@ public class ToStringer {
     private ToStringer(){}
 
     public static String dump(Object obj){
-        ArrayList<ObjectWrapper> list = toListOfWrappers(obj.getClass().getDeclaredFields(), obj);
+        ArrayList<ObjectWrapper> list = toListOfWrappers(obj.getClass().getDeclaredFields());
         Collections.sort(list);
         return list.stream().map(wrapper->{
             if (wrapper.isQuote()) return '"'+ wrapper.getFieldName() + '"';
@@ -21,7 +21,7 @@ public class ToStringer {
         }).collect(Collectors.joining("\n"));
     }
 
-    private static ArrayList<ObjectWrapper> toListOfWrappers(Field[] fields, Object obj){
+    private static ArrayList<ObjectWrapper> toListOfWrappers(Field[] fields){
         ArrayList<ObjectWrapper> list = new ArrayList<>();
         for (Field field: fields) {
             if(field.isAnnotationPresent(Dump.class)){
@@ -35,14 +35,19 @@ public class ToStringer {
         Field field;
         int order;
         boolean quote;
-        Method outputMethod;
+        Method[] outputMethods;
 
         private ObjectWrapper(Field field){
             this.field = field;
             this.order = field.getAnnotation(Dump.class).order();
             this.quote =  field.getAnnotation(Dump.class).quote();
+            this.outputMethods = new Method[field.getAnnotation(Dump.class).outputMethods().length];
             try{
-                this.outputMethod = field.getClass().getMethod(field.getAnnotation(Dump.class).outputMethod());
+                for (int i = 0; i < outputMethods.length; i++) {
+                    outputMethods[i] = field.getClass().getMethod(field.
+                            getAnnotation(Dump.class).
+                            outputMethods()[i]);
+                }
             }catch (NoSuchMethodException ignored){}
         }
 
@@ -50,9 +55,6 @@ public class ToStringer {
             return quote;
         }
 
-        public Method getOutputMethod() {
-            return outputMethod;
-        }
 
         public int getOrder() {
             return order;
@@ -60,22 +62,24 @@ public class ToStringer {
 
 
         public String getFieldName(){
-            outputMethod.setAccessible(true);
-            String output;
+
+            StringBuilder output = new StringBuilder();
             try{
-                output = (String) outputMethod.invoke(field);
-            }catch (IllegalAccessException | InvocationTargetException e){
-                output = "";
+
+                for (int i = 0; i < outputMethods.length; i++) {
+                    outputMethods[i].setAccessible(true);
+                    output.append(outputMethods[i].invoke(field));
+                    if(i < outputMethods.length - 1) output.append(" | ");
+                }
+            }catch (IllegalAccessException | InvocationTargetException | ClassCastException e){
+                output.append("");
             }
-            return output;
+            return output.toString();
         }
 
         @Override
         public int compareTo(ObjectWrapper o) {
-
-            if(order < o.getOrder()) return -1;
-            if(order == o.getOrder()) return 0;
-            return 1;
+            return Integer.compare(order, o.getOrder());
         }
     }
 

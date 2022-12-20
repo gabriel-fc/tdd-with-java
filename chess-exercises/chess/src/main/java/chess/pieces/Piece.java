@@ -110,4 +110,24 @@ public abstract class Piece implements Serializable {
         return this.getClass() == that.getClass() &&
                 this.color == that.getColor();
     }
+
+
+    public static Piece byRepresentationGetPiece(Character rep){
+        switch (Character.toLowerCase(rep)){
+            case 'p':
+                return rep == 'p' ? Piece.createWhitePawn() : Piece.createBlackPawn();
+            case 'r':
+                return rep == 'r' ? Piece.createWhiteRook() : Piece.createBlackRook();
+            case 'b':
+                return rep == 'b' ? Piece.createWhiteBishop() : Piece.createBlackBishop();
+            case 'k':
+                return rep == 'k' ? Piece.createWhiteKing() : Piece.createBlackKing();
+            case 'n':
+                return rep == 'n' ? Piece.createWhiteKnight() : Piece.createBlackKnight();
+            case 'q':
+                return rep == 'q' ? Piece.createWhiteQueen() : Piece.createBlackQueen();
+            default:
+                return Piece.noPiece();
+        }
+    }
 }

@@ -168,12 +168,16 @@ public class Board implements Iterable<Piece[]>, Serializable{
 
     }
 
-    private boolean compareBoard(Board that){
+    public boolean compareBoard(Board that){
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if(!board[i][j].equals(that.getPiece(StringUtil.setPosition(j, i)))) return false;
             }
         }
         return true;
+    }
+
+    public boolean isEmpty(){
+        return piecesCount == 0;
     }
 }

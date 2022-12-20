@@ -21,6 +21,10 @@ public class StringUtil {
         return 8 - Character.getNumericValue(io.charAt(1));
     }
 
+    public static String byUnidimensionalRepresentationGetPosition(int rep){
+        return setPosition(rep%8, rep/8);
+    }
+
     public static String setPosition(int file, int rank){
         return (char)(97+file) + Integer.toString(8 - rank);
     }

@@ -1,22 +1,44 @@
 package chess.board;
 
-import chess.db.BoardFile;
+import chess.db.DataBase;
+import chess.pieces.Piece;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class SerializedBoardTest {
+    private Board expectedBoard;
+    DataBase db;
+    @Before
+    public void setUp(){
+        expectedBoard = new Board();
+        expectedBoard.setEmptyBoard();
+        db = DataBase.getDb();
+        expectedBoard.put("a1",Piece.createBlackKing());
+        expectedBoard.put("d5",Piece.createWhitePawn());
+        db.persist(expectedBoard);
+    }
+
+    @After
+    public void tearDown(){
+        db.deleteDataBase();
+    }
 
     @Test
-    public void boardToFileTest()throws IOException {
-        BoardFile db = new BoardFile();
-        Board board = new Board();
-        board.initialize();
-        db.persist(board, BoardInterface.printBoard(board));
-        assertEquals(board, db.getBoardObject());
-        assertEquals(BoardInterface.printBoard(board), db.getBoardRepresentation());
+    public void boardToFileTest(){
+        assertTrue(db.persist(expectedBoard));
+    }
+
+
+
+    @Test
+    public void fileToBoardTest() throws IOException{
+        assertTrue(expectedBoard.compareBoard(db.getBoard()));
+
     }
 }
